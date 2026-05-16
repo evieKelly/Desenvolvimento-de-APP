@@ -17,6 +17,12 @@ def index():
 def cadastro():
     return render_template('cadastro.html')
 
+# RESPONSÁVEL: Kelly
+# TELA: Recuperação de Senha
+@app.route('/recuperar-senha')
+def recuperar_senha():
+    return render_template('recuperar_senha.html')
+
 # RESPONSÁVEL: Luiz
 # TELA: Tela Inicial 
 @app.route('/tela-inicial')
@@ -28,8 +34,6 @@ def tela_inicial():
 @app.route('/contatos')
 def contatos():
     return render_template('contatos.html')
-
-
 
 
 # RESPONSÁVEL: AManda

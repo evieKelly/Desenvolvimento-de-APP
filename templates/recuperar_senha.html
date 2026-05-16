@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ánimo - Recuperar Senha</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recuperar_senha.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        
+        <h2>Recuperar Senha</h2>
+        <p class="instrucao">
+            Digite seu e-mail cadastrado para receber as instruções de redefinição.
+        </p>
+        
+        <form>
+            <label>E-mail de Cadastro:</label>
+            <input type="email" required placeholder="seu@email.com">
+
+            <button type="submit">Enviar Link</button>
+        </form>
+        
+        <p class="link-voltar"><a href="{{ url_for('index') }}">Voltar para o Login</a></p>
+        
+    </div>
+</body>
+</html>
