@@ -12,22 +12,31 @@
 
     <div class="app-container">
         
-        <h2>Acesse o Ánimo</h2>
-        <form>
-            <label>E-mail:</label>
-            <input type="email" required placeholder="seu@email.com">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='img/LogoAnimo.png') }}" alt="Logo Ânimo" class="logo-img">
+        </div>
 
-            <label>Senha:</label>
-            <input type="password" required placeholder="••••••••">
+        <h3 class="boas-vindas">Bem vindo (a)</h3>
 
-            <button type="submit">Entrar</button>
+        <form class="login-form">
+            <div class="input-grupo">
+                <input type="email" required placeholder="Email">
+            </div>
+
+            <div class="input-grupo">
+                <input type="password" required placeholder="Senha">
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
         </form>
 
-        <p class="link-secundario">
-            <a href="{{ url_for('recuperar_senha') }}">Esqueceu sua senha?</a>
-        </p>
-        
-        <p>Não tem uma conta? <a href="{{ url_for('cadastro') }}">Cadastre-se</a></p>
+        <a href="{{ url_for('recuperar_senha') }}" class="link-esqueceu">Esqueceu a senha?</a>
+
+        <div class="divisoria"></div>
+        <div class="cadastro-footer">
+            <span>Não tem uma conta?</span>
+            <a href="{{ url_for('cadastro') }}" class="link-cadastro">Cadastre-se</a>
+        </div>
 
     </div>
 
