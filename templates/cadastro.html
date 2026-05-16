@@ -3,13 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ánimo - Login</title>
+    <title>Ánimo - Cadastro</title>
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
-    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
 </head>
 <body>
-    
+
+    <div class="app-container">
+        
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='img/LogoAnimo.png') }}" alt="Logo Ânimo" class="logo-img">
+        </div>
+
+        <h3 class="boas-vindas">Cadastre-se</h3>
+
+        <form class="cadastro-form">
+            <div class="input-grupo">
+                <input type="text" required placeholder="Nome">
+            </div>
+
+            <div class="input-grupo">
+                <input type="email" required placeholder="Email">
+            </div>
+
+            <div class="input-grupo">
+                <input type="number" required placeholder="Idade" min="0">
+            </div>
+
+            <div class="input-grupo">
+                <input type="password" required placeholder="Senha">
+            </div>
+
+            <div class="input-grupo">
+                <input type="password" required placeholder="Confirme sua senha">
+            </div>
+
+            <div class="termos-container">
+                <label class="checkbox-label">
+                    <input type="checkbox" required>
+                    <span>Li e aceito: <a href="#">Termos de Uso</a></span>
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" required>
+                    <span>Li e aceito: <a href="#">Política de Privacidade</a></span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn-cadastro">Cadastrar</button>
+        </form>
+
+        <div class="cadastro-footer">
+            <a href="{{ url_for('index') }}" class="btn-voltar">
+                &#x21aa; <!-- simbolo do voltar -->
+            </a>
+        </div>
+
+    </div>
+
 </body>
 </html>

@@ -1,0 +1,125 @@
+
+.app-container {
+    background: linear-gradient(to bottom, #FFFFE4 75%, #DCA7B8 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    padding: 20px 30px 15px 30px; 
+    box-sizing: border-box; 
+}
+
+.logo-img {
+    width: 200px; 
+    height: auto; 
+    margin-top: 2px; 
+}
+
+.boas-vindas {
+    color: #B5792A; 
+    font-size: 18px; 
+    font-weight: 500;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    text-align: center;
+}
+
+.cadastro-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.cadastro-form input[type="text"],
+.cadastro-form input[type="email"],
+.cadastro-form input[type="number"],
+.cadastro-form input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #FFD4B2; 
+    border: none;
+    border-radius: 25px; 
+    font-size: 15px;
+    color: #B5792A;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.cadastro-form input::placeholder {
+    color: #B5792A;
+    opacity: 0.7;
+}
+
+
+.termos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #613700;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.checkbox-label input[type="checkbox"] {
+    accent-color: #F3AF76; 
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.checkbox-label a {
+    color: #B5792A;
+    text-decoration: underline;
+}
+
+
+.btn-cadastro {
+    width: 100%;
+    padding: 12px; 
+    background-color: #F3AF76; 
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px; 
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-cadastro:active {
+    transform: scale(0.98);
+}
+
+
+.cadastro-footer {
+    width: 100%;
+    margin-top: auto; 
+    display: flex;
+    justify-content: flex-start; 
+    padding-bottom: 5px;
+}
+
+.btn-voltar {
+    font-size: 24px;
+    color: white; 
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transform: scaleX(-1); 
+    opacity: 0.8;
+}
+
+.btn-voltar:hover {
+    opacity: 1;
+}
