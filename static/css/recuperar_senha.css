@@ -1,60 +1,79 @@
 
-h2 {
-    color: #333;
-    margin-bottom: 15px;
-    font-size: 28px;
-    text-align: center;
+/* static/css/recuperar_senha.css */
+
+.app-container {
+    background: linear-gradient(to bottom, #FFFFE4 75%, #DCA7B8 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    padding: 25px 30px 20px 30px; 
+    box-sizing: border-box; 
 }
 
-.instrucao {
+.logo-img {
+    width: 250px; 
+    height: auto; 
+    margin-top: 10px; 
+}
+
+/* O Card centralizado com cantos arredondados do protótipo */
+.card-aviso {
+    width: 100%;
+    background-color: #FFDCC3; /* Tom pastel de pêssego/laranja bem suave para o fundo */
+    border-radius: 20px;
+    padding: 30px 20px;
+    margin-top: 50px; /* Joga o card um pouco mais para o centro da tela */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.texto-principal {
+    color: #BD5D16; /* Marrom avermelhado escuro do seu texto */
+    font-size: 18px;
+    font-weight: bold;
     text-align: center;
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 30px;
     line-height: 1.4;
 }
 
-form {
+/* Grupo de botões dentro do card */
+.botoes-grupo {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
+    width: 100%;
 }
 
-label {
-    font-size: 14px;
-    color: #666;
-    font-weight: 600;
-}
-
-input {
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    outline: none;
-}
-
-button {
-    margin-top: 10px;
-    padding: 16px;
-    background-color: #007bff; 
-    color: white;
+/* Estilo base para ambos os botões */
+.btn-action {
+    width: 100%;
+    padding: 14px;
     border: none;
-    border-radius: 12px;
+    border-radius: 20px; /* Bordas arredondadas combinando com o card */
     font-size: 16px;
     font-weight: bold;
-    cursor: pointer;
-}
-
-.link-voltar {
     text-align: center;
-    margin-top: 25px;
-    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
 }
 
-.link-voltar a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
+.btn-action:active {
+    transform: scale(0.98);
+}
+
+/* Botão Reenviar (Laranja claro) */
+.btn-reenviar {
+    background-color: #F3AF76;
+    color: white;
+}
+
+/* Botão Voltar (Marrom escuro) */
+.btn-voltar-login {
+    background-color: #B26E30;
+    color: white;
 }
