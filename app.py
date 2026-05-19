@@ -1,7 +1,32 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from models import db, Diario
+import random
 
 app = Flask(__name__)
 app.secret_key = 'chave_secreta' 
+
+sugestoes = [
+    '''Não guarde tudo para você. Use este espaço seguro
+      para expressar sua alegria, sua frustração ou até 
+      mesmo aquela sensação de que hoje foi um dia neutro.''',
+    
+    '''Você é muito mais forte do que a soma dos seus dias ruins. 
+    Que tal escrever um pouco sobre como foi o seu dia e esvaziar a 
+    mente para recarregar as energias?''',
+
+    '''Não subestime o poder dos pequenos passos. Reservar um momento
+    para colocar seus pensamentos em ordem hoje vai deixar o seu amanhã
+     mais leve.''',
+     
+     '''Sua trajetória importa e seus sentimentos também. Não importa como 
+     foi o dia de hoje, você venceu mais uma etapa. Como está o seu humor agora?''',
+
+     '''Dias difíceis fazem parte da jornada, mas eles não definem quem você é. Use 
+     este espaço para desabafar e deixar o peso de hoje para trás.''',
+
+     
+]
+
 
 # RESPONSÁVEL: Kelly 
 # TELA: Login (Página Inicial obrigatória)
@@ -35,12 +60,62 @@ def tela_inicial():
 def contatos():
     return render_template('contatos.html')
 
+#-------------------------------------------------------------------------------
+# RESPONSÁVEL: Amanda
+# TELA: diário
 
-# RESPONSÁVEL: AManda
-# TELA: Diário
-@app.route('/diario')
+@app.route("/diario")
 def diario():
-    return render_template('diario.html')
+
+    registros = Diario.query.all()
+
+    return render_template(
+        "diario.html",
+        registros=registros
+    )
+
+# deletar
+
+@app.route("/deletar/<int:id>")
+def deletar(id):
+
+    registro = Diario.query.get(id)
+
+    db.session.delete(registro)
+
+    db.session.commit()
+
+    return redirect("/diario")
+
+# editar
+
+@app.route("/editar/<int:id>", methods=["GET", "POST"])
+def editar(id):
+
+    registro = Diario.query.get(id)
+
+    # salvar edição
+    if request.method == "POST":
+
+        registro.texto = request.form["texto"]
+
+        db.session.commit()
+
+        return redirect("/diario")
+
+    # abrir página editar
+    return render_template(
+        "editar.html",
+        registro=registro
+    )
+
+#iniciar servidor
+
+if __name__ == "__main__":
+    app.run(debug=True)
+#--------------------------------------------------------------------------
+
+
 
 # RESPONSÁVEL: Eduardo
 # TELA:  Forms Uniceplac
@@ -75,12 +150,20 @@ def relatorio_mensal():
 def respiracao():
     return render_template('respiracao.html') 
 
+
+#-----------------------------------------------------------------
 # RESPONSÁVEL: Amanda
 # TELA: Sugestões de Atividades 
 @app.route('/sugestao')
 def sugestao():
-    return render_template('sugestao.html')
 
+    sugestao_do_dia = random.choice(sugestoes)
+
+    return render_template(
+        'sugestao.html',
+        sugestao=sugestao_do_dia
+    )
+#-------------------------------------------------------------------
 # RESPONSÁVEL: Luiz
 # TELA: Centros de Atendimento 
 @app.route('/centros-atendimento')
