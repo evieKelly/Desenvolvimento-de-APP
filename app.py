@@ -49,10 +49,43 @@ def recuperar_senha():
     return render_template('recuperar_senha.html')
 
 # RESPONSÁVEL: Luiz
-# TELA: Tela Inicial 
+# Calcula o "Humor Médio" a partir de uma lista de notas de humor (1 a 5),
+# que virão do Registro Diário de Humor (Quiz). Devolve um dicionário pronto
+# para a tela: rótulo, carinha (emoji) e o quanto preencher a barra (0 a 100%).
+def calcular_humor_medio(notas):
+    if not notas:
+        return {'rotulo': 'Sem registros', 'emoji': '🙂', 'porcentagem': 0}
+
+    media = sum(notas) / len(notas)
+
+    if media < 1.5:
+        rotulo, emoji = 'Muito ruim', '😣'
+    elif media < 2.5:
+        rotulo, emoji = 'Ruim', '🙁'
+    elif media < 3.5:
+        rotulo, emoji = 'Neutro', '😐'
+    elif media < 4.5:
+        rotulo, emoji = 'Bom', '🙂'
+    else:
+        rotulo, emoji = 'Muito bom', '😄'
+
+    return {
+        'rotulo': rotulo,
+        'emoji': emoji,
+        'porcentagem': round((media / 5) * 100),
+    }
+
+# RESPONSÁVEL: Luiz
+# TELA: Tela Inicial
 @app.route('/tela-inicial')
 def tela_inicial():
-    return render_template('tela_inicial.html')
+    # TODO: quando o Quiz (Registro Diário de Humor) começar a salvar as notas,
+    #       trocar a lista abaixo pela consulta real ao banco.
+    #       Ex.: notas = [r.nota for r in RegistroHumor.query.all()]
+    notas_humor = [2, 1, 2, 1, 2]  # dados de exemplo (placeholder) -> média "Ruim"
+
+    humor = calcular_humor_medio(notas_humor)
+    return render_template('tela_inicial.html', humor=humor)
 
 # RESPONSÁVEL: Deivid
 # TELA: Contatos 
@@ -109,10 +142,6 @@ def editar(id):
         registro=registro
     )
 
-#iniciar servidor
-
-if __name__ == "__main__":
-    app.run(debug=True)
 #--------------------------------------------------------------------------
 
 

@@ -3,13 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ánimo - Login</title>
-    
+    <title>Ánimo - Centros de Atendimento</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
-    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/centros_atendimento.css') }}">
 </head>
 <body>
-    
+
+    <div class="app-container">
+
+        <!-- Cabeçalho com botão voltar + título -->
+        <header class="topo-pagina">
+            <a href="{{ url_for('tela_inicial') }}" class="btn-voltar" aria-label="Voltar">←</a>
+            <h2 class="titulo-pagina">Centros de Atendimento</h2>
+        </header>
+
+        <p class="subtitulo">
+            Locais de apoio em saúde mental no Gama e entorno.
+        </p>
+
+        <!-- Aviso de emergência - sempre visível, importante -->
+        <div class="alerta-emergencia">
+            <strong>Em crise agora?</strong>
+            <p>Ligue para o <a href="tel:188" class="link-cvv">CVV - 188</a> (24h, gratuito).</p>
+        </div>
+
+        <!-- Campo de busca simples -->
+        <div class="busca">
+            <input
+                type="text"
+                id="campo-busca"
+                placeholder="Buscar por nome ou cidade..."
+            >
+        </div>
+
+        <!-- Lista de centros (cards) -->
+        <section class="lista-centros" id="lista-centros">
+
+            <article class="card-centro" data-nome="caps gama">
+                <h3 class="nome-centro">CAPS II Gama</h3>
+                <p class="cidade">Gama - DF</p>
+                <p class="endereco">📍 Área Especial 01, Setor Leste, Gama</p>
+                <p class="telefone">📞 (61) 3385-9100</p>
+                <div class="acoes">
+                    <a class="btn-acao" href="tel:6133859100">Ligar</a>
+                    <a class="btn-acao secundario"
+                       target="_blank"
+                       href="https://www.google.com/maps/search/CAPS+II+Gama+DF">
+                       Ver no mapa
+                    </a>
+                </div>
+            </article>
+
+            <article class="card-centro" data-nome="caps ad santa maria">
+                <h3 class="nome-centro">CAPS AD Santa Maria</h3>
+                <p class="cidade">Santa Maria - DF</p>
+                <p class="endereco">📍 QR 207, Conjunto B, Santa Maria</p>
+                <p class="telefone">📞 (61) 3395-1818</p>
+                <div class="acoes">
+                    <a class="btn-acao" href="tel:6133951818">Ligar</a>
+                    <a class="btn-acao secundario"
+                       target="_blank"
+                       href="https://www.google.com/maps/search/CAPS+AD+Santa+Maria+DF">
+                       Ver no mapa
+                    </a>
+                </div>
+            </article>
+
+            <article class="card-centro" data-nome="caps recanto das emas">
+                <h3 class="nome-centro">CAPS Recanto das Emas</h3>
+                <p class="cidade">Recanto das Emas - DF</p>
+                <p class="endereco">📍 Quadra 203, Recanto das Emas</p>
+                <p class="telefone">📞 (61) 3434-0080</p>
+                <div class="acoes">
+                    <a class="btn-acao" href="tel:6134340080">Ligar</a>
+                    <a class="btn-acao secundario"
+                       target="_blank"
+                       href="https://www.google.com/maps/search/CAPS+Recanto+das+Emas+DF">
+                       Ver no mapa
+                    </a>
+                </div>
+            </article>
+
+            <article class="card-centro" data-nome="caps riacho fundo">
+                <h3 class="nome-centro">CAPS Riacho Fundo II</h3>
+                <p class="cidade">Riacho Fundo II - DF</p>
+                <p class="endereco">📍 QN 14B, Riacho Fundo II</p>
+                <p class="telefone">📞 (61) 3399-1090</p>
+                <div class="acoes">
+                    <a class="btn-acao" href="tel:6133991090">Ligar</a>
+                    <a class="btn-acao secundario"
+                       target="_blank"
+                       href="https://www.google.com/maps/search/CAPS+Riacho+Fundo+II+DF">
+                       Ver no mapa
+                    </a>
+                </div>
+            </article>
+
+            <article class="card-centro" data-nome="caps novo gama">
+                <h3 class="nome-centro">CAPS Novo Gama</h3>
+                <p class="cidade">Novo Gama - GO</p>
+                <p class="endereco">📍 Av. JK, Setor Pedregal, Novo Gama</p>
+                <p class="telefone">📞 (61) 3699-1212</p>
+                <div class="acoes">
+                    <a class="btn-acao" href="tel:6136991212">Ligar</a>
+                    <a class="btn-acao secundario"
+                       target="_blank"
+                       href="https://www.google.com/maps/search/CAPS+Novo+Gama+GO">
+                       Ver no mapa
+                    </a>
+                </div>
+            </article>
+
+            <article class="card-centro" data-nome="caps valparaiso">
+                <h3 class="nome-centro">CAPS Valparaíso</h3>
+                <p class="cidade">Valparaíso de Goiás - GO</p>
+                <p class="endereco">📍 Av. Castelo Branco, Etapa A, Valparaíso</p>
+                <p class="telefone">📞 (61) 3627-1500</p>
+                <div class="acoes">
+                    <a class="btn-acao" href="tel:6136271500">Ligar</a>
+                    <a class="btn-acao secundario"
+                       target="_blank"
+                       href="https://www.google.com/maps/search/CAPS+Valparaiso+Goias">
+                       Ver no mapa
+                    </a>
+                </div>
+            </article>
+
+            <article class="card-centro" data-nome="caps cidade ocidental">
+                <h3 class="nome-centro">CAPS Cidade Ocidental</h3>
+                <p class="cidade">Cidade Ocidental - GO</p>
+                <p class="endereco">📍 Quadra 12, Setor Central, Cidade Ocidental</p>
+                <p class="telefone">📞 (61) 3605-1313</p>
+                <div class="acoes">
+                    <a class="btn-acao" href="tel:6136051313">Ligar</a>
+                    <a class="btn-acao secundario"
+                       target="_blank"
+                       href="https://www.google.com/maps/search/CAPS+Cidade+Ocidental+GO">
+                       Ver no mapa
+                    </a>
+                </div>
+            </article>
+
+            <article class="card-centro" data-nome="ubs gama">
+                <h3 class="nome-centro">UBS 1 Gama</h3>
+                <p class="cidade">Gama - DF</p>
+                <p class="endereco">📍 Setor Oeste, Gama (atendimento psicossocial básico)</p>
+                <p class="telefone">📞 (61) 3385-7000</p>
+                <div class="acoes">
+                    <a class="btn-acao" href="tel:6133857000">Ligar</a>
+                    <a class="btn-acao secundario"
+                       target="_blank"
+                       href="https://www.google.com/maps/search/UBS+1+Gama+DF">
+                       Ver no mapa
+                    </a>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Mensagem quando a busca não acha nada -->
+        <p class="vazio" id="msg-vazio" hidden>
+            Nenhum centro encontrado para essa busca.
+        </p>
+
+    </div>
+
+    <!-- Script simples de filtro pelo campo de busca -->
+    <script>
+        // Pega o campo de busca e todos os cards
+        const campo = document.getElementById('campo-busca');
+        const cards = document.querySelectorAll('.card-centro');
+        const msgVazio = document.getElementById('msg-vazio');
+
+        // Função que filtra os cards conforme o usuário digita
+        campo.addEventListener('input', function () {
+            const termo = campo.value.toLowerCase().trim();
+            let visiveis = 0;
+
+            cards.forEach(function (card) {
+                // data-nome guarda uma versão "limpa" do nome+cidade do centro
+                const texto = card.getAttribute('data-nome');
+                const cidade = card.querySelector('.cidade').textContent.toLowerCase();
+
+                if (texto.includes(termo) || cidade.includes(termo)) {
+                    card.style.display = 'block';
+                    visiveis++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Mostra a mensagem se nenhum card aparecer
+            msgVazio.hidden = visiveis > 0;
+        });
+    </script>
+
 </body>
 </html>

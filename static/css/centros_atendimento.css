@@ -1,0 +1,183 @@
+/* ============================================
+   CENTROS DE ATENDIMENTO - Ánimo
+   Responsável: Luiz
+   ============================================ */
+
+/* Container desta tela permite scroll vertical
+   já que a lista de centros pode crescer */
+.app-container {
+    background: linear-gradient(to bottom, #FFFFE4 0%, #FFE9D7 100%);
+    overflow-y: auto;
+    padding: 22px 20px 30px 20px;
+}
+
+/* ---------- Topo (voltar + título) ---------- */
+.topo-pagina {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.btn-voltar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #FFD4B2;
+    color: #613700;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.titulo-pagina {
+    color: #613700;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.subtitulo {
+    color: #B5792A;
+    font-size: 14px;
+    margin-bottom: 16px;
+    margin-left: 2px;
+}
+
+/* ---------- Alerta de emergência ---------- */
+.alerta-emergencia {
+    background-color: #F3CFD8;
+    border-left: 5px solid #B5792A;
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+}
+
+.alerta-emergencia strong {
+    color: #613700;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.alerta-emergencia p {
+    color: #613700;
+    font-size: 13px;
+}
+
+.link-cvv {
+    color: #B5792A;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* ---------- Campo de busca ---------- */
+.busca {
+    margin-bottom: 18px;
+}
+
+.busca input {
+    width: 100%;
+    padding: 12px 18px;
+    background-color: #ffffff;
+    border: 1.5px solid #FFD4B2;
+    border-radius: 25px;
+    font-size: 14px;
+    color: #613700;
+    outline: none;
+}
+
+.busca input::placeholder {
+    color: #B5792A;
+    opacity: 0.65;
+}
+
+.busca input:focus {
+    border-color: #F3AF76;
+}
+
+/* ---------- Lista de centros ---------- */
+.lista-centros {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.card-centro {
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #FFE4D2;
+}
+
+.nome-centro {
+    color: #613700;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.cidade {
+    color: #B5792A;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.endereco,
+.telefone {
+    color: #555;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 3px;
+}
+
+/* ---------- Botões dos cards ---------- */
+.acoes {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.btn-acao {
+    flex: 1;
+    text-align: center;
+    background-color: #F3AF76;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 9px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.btn-acao.secundario {
+    background-color: transparent;
+    color: #B5792A;
+    border: 1.5px solid #F3AF76;
+}
+
+/* ---------- Mensagem de busca vazia ---------- */
+.vazio {
+    text-align: center;
+    color: #B5792A;
+    font-size: 14px;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* ---------- Responsividade ---------- */
+@media (min-width: 480px) {
+    .titulo-pagina {
+        font-size: 22px;
+    }
+    .nome-centro {
+        font-size: 17px;
+    }
+}
