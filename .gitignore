@@ -2,7 +2,7 @@
 __pycache__/
 *.pyc
 
-# Ferramentas locais / editor (não devem ir pro repositório)
+# Ferramentas locais /
 .claude/
 .code-review-graph/
 .vscode/
