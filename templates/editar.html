@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Diário</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/editar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- Título -->
+    <div class="faixa-titulo3">
+        <h1>Editar registro</h1>
+    </div>
+
+    <!-- 🔹 CARD ÚNICO -->
+    <div class="cartao-editar">
+
+        <!-- IMAGEM DENTRO DO CARD -->
+        <img class="img-editar" src="/static/img/cadEditar.png">
+
+        <!-- FORM -->
+        <form method="POST">
+
+            <textarea class="texto-area" name="texto">{{ registro.texto }}</textarea>
+
+            <br><br>
+
+            <button class="btn-salvo" type="submit">Salvar</button>
+        </form>
+
+        <a href="/diario">
+            <button class="voltar-editar">Voltar</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
