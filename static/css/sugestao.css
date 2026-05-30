@@ -1,15 +1,13 @@
 
-/* Página sugestão */
+/* tela sugestão */ 
 
 .app-container {
-  /* Cor de fundo */
   background-color: #FEFFEB;
   /* Centraliza tudo */
   display: flex;
   flex-direction: column;
   align-items: center;
    overflow-y: auto;
-  /* DEGRADÊ */
   background: linear-gradient(
     to bottom,
     #FEFFEB 70%,
@@ -19,23 +17,20 @@
 
 /* Botão voltar */
 .botao-voltar {
-  /* 1. Ativa o posicionamento absoluto para flutuar fora do balão rosa */
   position: absolute;       
-  /* 2. Controla a distância do canto esquerdo da tela */
   right: 80px;               
-  /* 3. Centraliza verticalmente alinhado ao título */
   transform: translateY(-50%);
   /* Estilos visuais limpos */
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0;               /* Remove preenchimentos que possam empurrar o ícone */
-  margin: 15px;                /* Remove as margens antigas que conflitam com o absolute */
+  padding: 0;               
+  margin: 15px;              
 }
 
 .icone-voltar {
   width: 70px;
-  height: 40px;       /* Mantém o tamanho da imagem do botão */
+  height: 40px;       
   display: flex ;
 }
 
@@ -46,7 +41,7 @@
   display: flex;
   justify-content: left;
   align-items: center;
-  margin-top: 40px; /* A margem de cima que adicionamos antes */
+  margin-top: 40px; 
 }
 
 
@@ -82,22 +77,16 @@
   align-items: center;
   /* Centraliza conteúdo */
   justify-content: space-between;
-  /* Cor */
   background-color: #f8f8f8;
-  /* TAMANHO */
   width: 300px;
-  /* ALTURA AUTOMÁTICA */
   height: auto;
   /* Altura mínima */
   min-height: 300px;
   /* Espaçamento interno */
   padding: 20px;
-  /* Distância do topo */
   margin-top: 15px;
   margin-bottom: 30px;
-  /* Bordas arredondadas */
   border-radius: 28px;
-  /* Sombra */
   box-shadow: 0 5px 15px rgba(0,0,0,0.12);
   /* Padding não aumenta tamanho */
   box-sizing: border-box;

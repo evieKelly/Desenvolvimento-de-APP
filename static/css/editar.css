@@ -47,9 +47,6 @@ overflow-y: auto;
   }
 
 
-
-/* Texto do titulo*/
-
 .faixa-titulo3 h1 {
   margin: 0;
   color:#9A5D23;
@@ -65,7 +62,7 @@ overflow-y: auto;
 }
 
 .texto-area{
-   width: 270px; /* aumenta aqui */
+   width: 270px; 
   height: 120px;
   border: none;
   outline: none;
@@ -79,12 +76,12 @@ overflow-y: auto;
   scrollbar-width: none; 
 }
 .texto-area::-webkit-scrollbar{
-  display: none; /* Chrome, Edge, Safari */
+  display: none; 
 }
 .texto-area:focus{
 background-color: #eed7c1;
-  border-color: #b9926e; /* Agora a sua borda marrom vai aparecer */
-  outline: none;         /* Isso aqui elimina de vez a borda preta do navegador! */
+  border-color: #b9926e; 
+  outline: none;        
 
 
 }
