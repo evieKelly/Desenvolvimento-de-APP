@@ -1,15 +1,66 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ánimo - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugestão Diária</title>
+
     
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='CSS/sugestao.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/sugestao.css') }}">
 </head>
+
 <body>
-    
+     <div class="app-container">
+<div>
+    <header class="cabecalho-container">
+  <a href="/tela-inicial" class="botao-voltar">
+    <img src="/static/img/voltar.png" alt="Voltar" class="icone-voltar">
+</a>
+
+</div>
+        <div class="faixa-titulo">
+            <h1>Sugestão de hoje</h1>
+        </div>
+
+    </header>
+
+    <div class="cartao-sugestao">
+
+        <img
+            class="img-sugestao"
+            src="/static/img/caderno.png"
+            alt="Diário">
+
+        <p class="texto-descricao">
+            {{ sugestao }}
+        </p>
+
+        <div class="container-botoes">
+ <a href="/tela-inicial">
+            <button class="btn-ignorar">
+                Ignorar por hoje
+            </button>
+</a>
+            <form action="/registrar" method="POST">
+
+                <input
+                    type="hidden"
+                    name="texto"
+                    value="{{ sugestao }}">
+
+                <button class="btn-registrar">
+                    Registrar no diário
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
 </body>
+
 </html>

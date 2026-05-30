@@ -1,15 +1,93 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ánimo - Login</title>
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário Pessoal</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/diario.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
 </head>
+
 <body>
-    
+
+<div class="app-container">
+
+    <!-- Cabeçalho -->
+    <header class="cabecalho-container2">
+
+        <a href="/sugestao" class="botao-voltar2">
+            <img src="/static/img/voltar.png" alt="Voltar" class="icone-voltar2">
+        </a>
+
+        <div class="faixa-titulo2">
+            <h1>Diário pessoal</h1>
+        </div>
+
+        <div class="data-diario">
+            Hoje, {{ hoje }}
+        </div>
+
+    </header>
+
+    <!-- Cartão principal -->
+    <div class="cartao-diario">
+
+        <img class="img-diario" src="/static/img/caderno.png">
+
+        <!-- Área dos registros -->
+        <div class="texto-descricao">
+
+            {% if registros|length == 0 %}
+
+                <p>Seu diário está vazio. Registre algo hoje ✨</p>
+
+                <a href="/sugestao">
+                    <button class="btn-registrar2">
+                        Registrar no diário
+                    </button>
+                </a>
+
+            {% else %}
+
+                {% for r in registros %}
+
+                <!-- registro -->
+                <div class="registro-card">
+
+                    <!-- Texto -->
+                    <div class="texto-descricao2">
+                        <p>{{ r.texto }}</p>
+                    </div>
+
+                    <!-- Botões -->
+                    <div class="botoes-registro">
+
+                        <a href="/editar/{{ r.id }}">
+                            <button class="btn-editar">
+                                Editar
+                            </button>
+                        </a>
+
+                        <a href="/deletar/{{ r.id }}">
+                            <button class="btn-excluir">
+                                Excluir
+                            </button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>

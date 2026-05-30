@@ -1,1 +1,164 @@
 
+/* tela sugestão */ 
+
+.app-container {
+  background-color: #FEFFEB;
+  /* Centraliza tudo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   overflow-y: auto;
+  background: linear-gradient(
+    to bottom,
+    #FEFFEB 70%,
+    #f4c4d4 100%
+  );
+}
+
+/* Botão voltar */
+.botao-voltar {
+  position: absolute;       
+  right: 80px;               
+  transform: translateY(-50%);
+  /* Estilos visuais limpos */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;               
+  margin: 15px;              
+}
+
+.icone-voltar {
+  width: 70px;
+  height: 40px;       
+  display: flex ;
+}
+
+/* Cabeçalho*/
+.cabecalho-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: 40px; 
+}
+
+
+/* Titulo*/
+.faixa-titulo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #c5a8a8;
+  width: 270px;
+  height: 40px;
+  border-radius: 15px;
+  /* Distância do topo */
+  margin-top: 20px;
+}
+
+
+/* Texto do titulo*/
+.faixa-titulo h1 {
+  margin: 0;
+  color: #4a2828;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* Cartão principal */
+.cartao-sugestao {
+  /* Flexbox */
+  display: flex;
+  /* Coluna */
+  flex-direction: column;
+  /* Centraliza horizontalmente */
+  align-items: center;
+  /* Centraliza conteúdo */
+  justify-content: space-between;
+  background-color: #f8f8f8;
+  width: 300px;
+  height: auto;
+  /* Altura mínima */
+  min-height: 300px;
+  /* Espaçamento interno */
+  padding: 20px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  border-radius: 28px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+  /* Padding não aumenta tamanho */
+  box-sizing: border-box;
+}
+
+/* Imagem */
+.img-sugestao {
+width: 260px;
+}
+/* Texto*/
+.texto-descricao {
+  /* Centraliza texto */
+  text-align: center;
+  /* Cor */
+  color: #D44949;
+  /* Tamanho */
+   font-size: 0.80rem;
+  /* Espaçamento entre linhas */
+  line-height: 1;
+  /* Largura */
+  width: 90%;
+  /* Remove altura fixa */
+  height: auto;
+  /* Espaçamento */
+  margin-bottom: 3px;
+}
+
+/* Conteiner botões */
+.container-botoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+/* Botão ignorar*/
+.btn-ignorar {
+  background-color: #f3d7d7;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #b24d4d;
+  font-size: 0.60rem;
+   box-shadow: 0 5px 6px rgba(0,0,0,0.26);
+  transition: 0.3s;
+}
+/* Hover */
+.btn-ignorar:hover {
+  transform: scale(1.05);
+}
+
+/* Botão registrar */
+.btn-registrar {
+  background-color: #ff8f8f;
+  border: none;
+  padding: 8px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.60rem;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: 0.3s;
+   box-shadow: 0 5px 6px rgba(0,0,0,0.26);
+}
+/* Hover */
+.btn-registrar:hover {
+  transform: scale(1.05);
+}
+
+
+
+

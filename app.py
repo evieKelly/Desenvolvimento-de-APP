@@ -1,32 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, Diario
+from datetime import datetime
+import locale
 import random
 
 app = Flask(__name__)
 app.secret_key = 'chave_secreta' 
-
-sugestoes = [
-    '''Não guarde tudo para você. Use este espaço seguro
-      para expressar sua alegria, sua frustração ou até 
-      mesmo aquela sensação de que hoje foi um dia neutro.''',
-    
-    '''Você é muito mais forte do que a soma dos seus dias ruins. 
-    Que tal escrever um pouco sobre como foi o seu dia e esvaziar a 
-    mente para recarregar as energias?''',
-
-    '''Não subestime o poder dos pequenos passos. Reservar um momento
-    para colocar seus pensamentos em ordem hoje vai deixar o seu amanhã
-     mais leve.''',
-     
-     '''Sua trajetória importa e seus sentimentos também. Não importa como 
-     foi o dia de hoje, você venceu mais uma etapa. Como está o seu humor agora?''',
-
-     '''Dias difíceis fazem parte da jornada, mas eles não definem quem você é. Use 
-     este espaço para desabafar e deixar o peso de hoje para trás.''',
-
-     
-]
-
 
 # RESPONSÁVEL: Kelly 
 # TELA: Login (Página Inicial obrigatória)
@@ -96,19 +75,23 @@ def contatos():
 #-------------------------------------------------------------------------------
 # RESPONSÁVEL: Amanda
 # TELA: diário
-
+# Configurações do Banco de Dados (Movidas para o topo)
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///diario.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 @app.route("/diario")
 def diario():
 
     registros = Diario.query.all()
 
+    hoje = datetime.now().strftime("%d de %B")
+
     return render_template(
         "diario.html",
-        registros=registros
+        registros=registros,
+        hoje=hoje
     )
-
-# deletar
-
+# ROTA: Deletar
 @app.route("/deletar/<int:id>")
 def deletar(id):
 
@@ -120,14 +103,12 @@ def deletar(id):
 
     return redirect("/diario")
 
-# editar
-
+# ROTA: Editar: AMANDA 
 @app.route("/editar/<int:id>", methods=["GET", "POST"])
 def editar(id):
 
     registro = Diario.query.get(id)
 
-    # salvar edição
     if request.method == "POST":
 
         registro.texto = request.form["texto"]
@@ -135,12 +116,26 @@ def editar(id):
         db.session.commit()
 
         return redirect("/diario")
-
-    # abrir página editar
+    
     return render_template(
         "editar.html",
         registro=registro
     )
+#ROTA: registrar
+
+@app.route("/registrar", methods=["POST"])
+def registrar():
+    texto = request.form["texto"]
+
+    novo = Diario(
+        texto=texto,
+        data=str(datetime.now())
+    )
+
+    db.session.add(novo)
+    db.session.commit()
+
+    return redirect("/diario")
 
 #--------------------------------------------------------------------------
 
@@ -183,10 +178,38 @@ def respiracao():
 #-----------------------------------------------------------------
 # RESPONSÁVEL: Amanda
 # TELA: Sugestões de Atividades 
+
+
+db.init_app(app)
+
+
+with app.app_context():
+    db.create_all()
+
+
+# Lista de Sugestões
+sugestoes = [
+    '''Não guarde tudo para você. Use este espaço seguro para expressar sua alegria, sua frustração ou até mesmo aquela sensação de que hoje foi um dia neutro.''',
+   
+    '''Você é muito mais forte do que a soma dos seus dias ruins. Que tal escrever um pouco sobre como foi o seu dia e esvaziar a mente para recarregar as energias?''',
+
+
+    '''Não subestime o poder dos pequenos passos. Reservar um momento para colocar seus pensamentos em ordem hoje vai deixar o seu amanhã mais leve.''',
+     
+    '''Sua trajetória importa e seus sentimentos também. Não importa como foi o dia de hoje, você venceu mais uma etapa. Como está o seu humor agora?''',
+
+
+    '''Dias difíceis fazem parte da jornada, mas eles não definem quem você é. Use este espaço para desabafar e deixar o peso de hoje para trás.''',
+]
+
+
+# ROTA: Sugestões
 @app.route('/sugestao')
 def sugestao():
 
+
     sugestao_do_dia = random.choice(sugestoes)
+
 
     return render_template(
         'sugestao.html',
