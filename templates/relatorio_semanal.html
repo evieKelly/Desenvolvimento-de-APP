@@ -1,15 +1,55 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ánimo - Login</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ánimo - Relatório Semanal</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
-    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/relatorio_semanal.css') }}">
 </head>
 <body>
-    
+
+    <div class="app-container relatorio-bg">
+
+        <!-- Botão voltar -->
+        <a href="/" class="btn-voltar">←</a>
+
+        <!-- Título -->
+        <div class="titulo-card">
+            Resumo semanal do humor
+        </div>
+
+        <!-- Lista de humores -->
+        <div class="lista-humores">
+
+            <div class="humor-card">
+                <span>☻ Feliz</span>
+                <span>{{ humores["Feliz"] }}%</span>
+            </div>
+
+            <div class="humor-card">
+                <span>☻ Calmo</span>
+                <span>{{ humores["Calmo"] }}%</span>
+            </div>
+
+            <div class="humor-card">
+                <span>☻ Neutro</span>
+                <span>{{ humores["Neutro"] }}%</span>
+            </div>
+
+            <div class="humor-card">
+                <span>☻ Triste</span>
+                <span>{{ humores["Triste"] }}%</span>
+            </div>
+
+        </div>
+
+        <!-- Botão para ir ao mensal -->
+        <a href="/relatorio-mensal" class="btn-mensal">
+            Ver resumo mensal
+        </a>
+
+    </div>
+
 </body>
 </html>

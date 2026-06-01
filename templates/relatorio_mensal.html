@@ -1,15 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ánimo - Login</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ánimo - Relatório Mensal</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
-    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/relatorio_mensal.css') }}">
 </head>
 <body>
-    
+
+    <div class="app-container relatorio-bg">
+
+        <!-- Botão voltar para semanal -->
+        <a href="/relatorio-semanal" class="btn-voltar">←</a>
+
+        <!-- Título -->
+        <div class="titulo-card">
+            Resumo mensal do humor
+        </div>
+
+        <h2 class="subtitulo">Seu humor este mês</h2>
+
+        <!-- Gráfico fake simples só para montar o front -->
+        <div class="grafico-linha">
+            {% for humor, porcentagem in humores.items() %}
+                <p>{{ humor }} - {{ porcentagem }}%</p>
+            {% endfor %}
+
+            <div class="linha"></div>
+            <div class="dias">Seg | Ter | Qua | Qui | Sex | Sáb | Dom</div>
+        </div>
+
+        <!-- Gráfico de pizza fake -->
+        <div class="grafico-pizza">
+            <div class="pizza"></div>
+            <p>Distribuição de humor este mês</p>
+        </div>
+
+    </div>
+
 </body>
 </html>

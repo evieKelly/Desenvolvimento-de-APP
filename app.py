@@ -1,9 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from models import db, Diario
+from models import db, Diario, RegistroHumor
 import random
 
 app = Flask(__name__)
 app.secret_key = 'chave_secreta' 
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
 
 sugestoes = [
     '''Não guarde tudo para você. Use este espaço seguro
@@ -164,13 +169,34 @@ def quiz():
 # TELA: Relatório Semanal
 @app.route('/relatorio-semanal')
 def relatorio_semanal():
-    return render_template('relatorio_semanal.html')
+    humores = {
+        "Feliz": 0,
+        "Calmo": 0,
+        "Neutro": 0,
+        "Triste": 0
+    }
+
+    return render_template(
+        'relatorio_semanal.html',
+        humores=humores
+    )
 
 # RESPONSÁVEL: Augusto
 # TELA: Relatório Mensal
 @app.route('/relatorio-mensal')
 def relatorio_mensal():
-    return render_template('relatorio_mensal.html')
+    humores = {
+        "Muito Feliz": 0,
+        "Bem": 0,
+        "Neutro": 0,
+        "Triste": 0,
+        "Muito Triste": 0
+    }
+
+    return render_template(
+        'relatorio_mensal.html',
+        humores=humores
+    )
 
 
 # RESPONSÁVEL: Eduardo
@@ -203,6 +229,9 @@ def centros_atendimento():
 # ==============================================================================
 # INICIALIZAÇÃO DO SERVIDOR
 # ==============================================================================
+with app.app_context():
+    db.create_all()
+
 if __name__ == '__main__':
     # debug=True faz o Flask reiniciar sozinho sempre que vocês alterarem o código
     app.run(debug=True)
