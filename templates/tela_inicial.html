@@ -20,7 +20,9 @@
 
         <!-- Card Humor Médio: média dos registros de humor (vindos do Quiz) -->
         <section class="card-humor">
-            <div class="humor-emoji">{{ humor.emoji }}</div>
+            <div class="humor-emoji">
+                <img src="{{ url_for('static', filename='img/icones/' ~ humor.imagem) }}" alt="{{ humor.rotulo }}">
+            </div>
             <div class="humor-info">
                 <span class="humor-titulo">Humor Médio</span>
                 <span class="humor-rotulo">{{ humor.rotulo }}</span>
@@ -35,32 +37,32 @@
 
             <!-- Registro Diário de Humor abre o Quiz (responsável: Deivid) -->
             <a href="{{ url_for('quiz') }}" class="card-atalho">
-                <span class="icone">⭐</span>
+                <img class="icone" src="{{ url_for('static', filename='img/icones/registro.png') }}" alt="">
                 <span class="titulo-card">Registro Diário de Humor</span>
             </a>
 
             <a href="{{ url_for('relatorio_mensal') }}" class="card-atalho">
-                <span class="icone">✅</span>
+                <img class="icone" src="{{ url_for('static', filename='img/icones/relatorios.png') }}" alt="">
                 <span class="titulo-card">Relatórios</span>
             </a>
 
             <a href="{{ url_for('sugestao') }}" class="card-atalho">
-                <span class="icone">💡</span>
+                <img class="icone" src="{{ url_for('static', filename='img/icones/sugestao.png') }}" alt="">
                 <span class="titulo-card">Sugestão Diária</span>
             </a>
 
             <a href="{{ url_for('diario') }}" class="card-atalho">
-                <span class="icone">📝</span>
+                <img class="icone" src="{{ url_for('static', filename='img/icones/diario.png') }}" alt="">
                 <span class="titulo-card">Diário</span>
             </a>
 
             <a href="{{ url_for('respiracao') }}" class="card-atalho">
-                <span class="icone">🌬️</span>
+                <img class="icone" src="{{ url_for('static', filename='img/icones/respiracao.png') }}" alt="">
                 <span class="titulo-card">Exercícios de Respiração</span>
             </a>
 
             <a href="{{ url_for('centros_atendimento') }}" class="card-atalho">
-                <span class="icone">📍</span>
+                <img class="icone" src="{{ url_for('static', filename='img/icones/centros.png') }}" alt="">
                 <span class="titulo-card">Centros de Atendimento</span>
             </a>
 

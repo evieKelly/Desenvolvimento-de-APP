@@ -56,27 +56,28 @@ def recuperar_senha():
 # RESPONSÁVEL: Luiz
 # Calcula o "Humor Médio" a partir de uma lista de notas de humor (1 a 5),
 # que virão do Registro Diário de Humor (Quiz). Devolve um dicionário pronto
-# para a tela: rótulo, carinha (emoji) e o quanto preencher a barra (0 a 100%).
+# para a tela: rótulo, carinha (imagem 2D) e o quanto preencher a barra (0 a 100%).
+# As carinhas ficam em static/img/icones/humor_1.png (triste) a humor_5.png (feliz).
 def calcular_humor_medio(notas):
     if not notas:
-        return {'rotulo': 'Sem registros', 'emoji': '🙂', 'porcentagem': 0}
+        return {'rotulo': 'Sem registros', 'imagem': 'humor_3.png', 'porcentagem': 0}
 
     media = sum(notas) / len(notas)
 
     if media < 1.5:
-        rotulo, emoji = 'Muito ruim', '😣'
+        rotulo, imagem = 'Muito ruim', 'humor_1.png'
     elif media < 2.5:
-        rotulo, emoji = 'Ruim', '🙁'
+        rotulo, imagem = 'Ruim', 'humor_2.png'
     elif media < 3.5:
-        rotulo, emoji = 'Neutro', '😐'
+        rotulo, imagem = 'Neutro', 'humor_3.png'
     elif media < 4.5:
-        rotulo, emoji = 'Bom', '🙂'
+        rotulo, imagem = 'Bom', 'humor_4.png'
     else:
-        rotulo, emoji = 'Muito bom', '😄'
+        rotulo, imagem = 'Muito bom', 'humor_5.png'
 
     return {
         'rotulo': rotulo,
-        'emoji': emoji,
+        'imagem': imagem,
         'porcentagem': round((media / 5) * 100),
     }
 
