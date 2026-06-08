@@ -54,10 +54,10 @@ def recuperar_senha():
     return render_template('recuperar_senha.html')
 
 # RESPONSÁVEL: Luiz
-# Calcula o "Humor Médio" a partir de uma lista de notas de humor (1 a 5),
-# que virão do Registro Diário de Humor (Quiz). Devolve um dicionário pronto
-# para a tela: rótulo, carinha (imagem 2D) e o quanto preencher a barra (0 a 100%).
-# As carinhas ficam em static/img/icones/humor_1.png (triste) a humor_5.png (feliz).
+# aqui eu calculo o humor médio com as notas de 1 a 5 e já devolvo pronto pra
+# tela: o rótulo (tipo "Bom"), a carinha e o quanto preencher a barrinha.
+# troquei os emoji por imagem, as carinhas estão em
+# static/img/icones/humor_1.png (triste) até humor_5.png (feliz).
 def calcular_humor_medio(notas):
     if not notas:
         return {'rotulo': 'Sem registros', 'imagem': 'humor_3.png', 'porcentagem': 0}
@@ -82,13 +82,11 @@ def calcular_humor_medio(notas):
     }
 
 # RESPONSÁVEL: Luiz
-# Transforma um registro de humor (salvo pelo Quiz no banco) numa nota de 1 a 5,
-# que é o formato que o calcular_humor_medio entende.
-# O Quiz (Deivid) ainda vai definir COMO salva o humor, então cobrimos os 2 casos:
-#   - se salvar número (ex: 4), usamos direto;
-#   - se salvar texto (ex: "Feliz"), traduzimos pelo mapa abaixo.
-# IMPORTANTE: combinar com o grupo o formato exato pra esse mapa bater certinho.
-# Humor desconhecido cai em neutro (3) só pra nunca quebrar a tela.
+# Deivid, fiz isso aqui pra quando o teu Quiz começar a salvar o humor no banco.
+# como a gente ainda não combinou se vai salvar número ou texto, deixei rodando
+# dos dois jeitos: se vier número (1 a 5) eu uso direto, se vier texto eu traduzo
+# pelo mapa de baixo. se cair alguma coisa que não tá no mapa eu boto neutro (3)
+# pra não quebrar a tela. depois me fala qual formato vocês vão usar.
 MAPA_HUMOR = {
     'muito triste': 1, 'triste': 2,
     'neutro': 3,
@@ -99,20 +97,20 @@ MAPA_HUMOR = {
 def nota_do_registro(registro):
     valor = registro.humor
     try:
-        nota = int(valor)               # caso o Quiz salve um número
+        nota = int(valor)               # se o Quiz salvar número
         if 1 <= nota <= 5:
             return nota
     except (TypeError, ValueError):
         pass
-    return MAPA_HUMOR.get(str(valor).strip().lower(), 3)  # caso salve texto
+    return MAPA_HUMOR.get(str(valor).strip().lower(), 3)  # se salvar texto
 
 # RESPONSÁVEL: Luiz
 # TELA: Tela Inicial
 @app.route('/tela-inicial')
 def tela_inicial():
-    # Lê os registros de humor salvos pelo Quiz (Registro Diário de Humor).
-    # Enquanto o Quiz do Deivid não salvar nada, a lista vem vazia e o card
-    # mostra "Sem registros" — estado honesto, sem dado falso.
+    # pego os registros de humor que o Quiz salva no banco e tiro a média.
+    # enquanto o Quiz ainda não salva nada vem vazio e aparece "Sem registros"
+    # no card, achei melhor do que deixar um humor de mentira aparecendo.
     registros = RegistroHumor.query.all()
     notas_humor = [nota_do_registro(r) for r in registros]
 

@@ -48,7 +48,7 @@
     flex-shrink: 0;
 }
 
-/* Carinha do humor (imagem 2D) */
+/* a carinha do humor agora é imagem em vez de emoji, então dou o tamanho dela aqui */
 .card-humor .humor-emoji img {
     width: 64px;
     height: 64px;
@@ -121,7 +121,7 @@
     transform: scale(0.96);
 }
 
-/* Ícone 2D de cada atalho */
+/* troquei o emoji pelo ícone novo, aqui só ajusto o tamanho */
 .card-atalho .icone {
     width: 52px;
     height: 52px;
