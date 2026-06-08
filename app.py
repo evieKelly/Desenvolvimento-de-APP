@@ -82,13 +82,39 @@ def calcular_humor_medio(notas):
     }
 
 # RESPONSÁVEL: Luiz
+# Transforma um registro de humor (salvo pelo Quiz no banco) numa nota de 1 a 5,
+# que é o formato que o calcular_humor_medio entende.
+# O Quiz (Deivid) ainda vai definir COMO salva o humor, então cobrimos os 2 casos:
+#   - se salvar número (ex: 4), usamos direto;
+#   - se salvar texto (ex: "Feliz"), traduzimos pelo mapa abaixo.
+# IMPORTANTE: combinar com o grupo o formato exato pra esse mapa bater certinho.
+# Humor desconhecido cai em neutro (3) só pra nunca quebrar a tela.
+MAPA_HUMOR = {
+    'muito triste': 1, 'triste': 2,
+    'neutro': 3,
+    'bem': 4, 'calmo': 4, 'feliz': 4,
+    'muito feliz': 5,
+}
+
+def nota_do_registro(registro):
+    valor = registro.humor
+    try:
+        nota = int(valor)               # caso o Quiz salve um número
+        if 1 <= nota <= 5:
+            return nota
+    except (TypeError, ValueError):
+        pass
+    return MAPA_HUMOR.get(str(valor).strip().lower(), 3)  # caso salve texto
+
+# RESPONSÁVEL: Luiz
 # TELA: Tela Inicial
 @app.route('/tela-inicial')
 def tela_inicial():
-    # TODO: quando o Quiz (Registro Diário de Humor) começar a salvar as notas,
-    #       trocar a lista abaixo pela consulta real ao banco.
-    #       Ex.: notas = [r.nota for r in RegistroHumor.query.all()]
-    notas_humor = [2, 1, 2, 1, 2]  # dados de exemplo (placeholder) -> média "Ruim"
+    # Lê os registros de humor salvos pelo Quiz (Registro Diário de Humor).
+    # Enquanto o Quiz do Deivid não salvar nada, a lista vem vazia e o card
+    # mostra "Sem registros" — estado honesto, sem dado falso.
+    registros = RegistroHumor.query.all()
+    notas_humor = [nota_do_registro(r) for r in registros]
 
     humor = calcular_humor_medio(notas_humor)
     return render_template('tela_inicial.html', humor=humor)
