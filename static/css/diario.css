@@ -1,0 +1,205 @@
+
+/* tela Diário */
+
+.app-container {
+  /* Cor de fundo */
+  background-color: #FEFFEB;
+  /* Centraliza tudo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   overflow-y: auto;
+  /* DEGRADÊ */
+  background: linear-gradient(
+    to bottom,
+    #FEFFEB 70%,
+    #f4c4d4 100%
+  );
+  overflow-y: auto;
+  scrollbar-width: none; 
+}
+.app-container::-webkit-scrollbar{
+  display: none; /* Chrome, Edge, Safari */
+}
+
+/*Conteiner cabeçalho 2*/
+.cabecalho-container2 {
+  position: relative;
+  width: 100%;
+  display: flex;
+   flex-direction: column; 
+  justify-content: center;  /* Centraliza o título na tela */
+  align-items: center;
+  margin-top: 40px; 
+  box-sizing: border-box;
+}
+
+
+/*Botão voltar */
+.botao-voltar2{
+  /* 1. Ativa o posicionamento absoluto para flutuar fora do balão rosa */
+  position: absolute;       
+  /* 2. Controla a distância do canto esquerdo da tela */
+   left: 1px;               
+  /* 3. Centraliza verticalmente alinhado ao título */
+  top: 1%;
+  transform: translateY(-100%);
+  /* Estilos visuais limpos */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0; /* Remove preenchimentos que possam empurrar o ícone */
+  margin: 1px;
+  left: 20px;
+ /* Remove as margens antigas que conflitam com o absolute */
+}
+.icone-voltar2 {
+  width: 70px;/* Mantém o tamanho da imagem do botão */
+  height: 40px;
+  display: block;
+}
+
+
+
+/* Titulo*/
+.faixa-titulo2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFE4CC;
+  width: 270px;
+  height: 35px;
+  border-radius: 15px;
+    /* Distância do topo */
+  margin-top: 15px;
+}
+/* Texto do titulo*/
+.faixa-titulo2 h1 {
+  margin: 0;
+  color:#9A5D23;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+
+.data-diario {
+margin-top: 25px;
+background-color: #FFE4CC;
+color: #b36e2e;
+padding: 5px 60px;
+border-radius: 12px;
+font-size: 0.60rem;
+text-align: center;
+}
+
+
+/*Cartão diário*/
+.cartao-diario{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #f8f8f8;
+  width: 300px;
+  min-height: 300px;
+  padding: 20px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  border-radius: 28px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+.img-diario{
+    width: 260px;
+}
+
+.texto-descricao{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   color: #D44949;
+    font-size: 0.80rem;
+}
+
+.texto-descricao2{
+  width: 100%;
+  font-size: 0.80rem;
+  color: #D44949;
+  word-break: break-word;
+}
+
+.btn-registrar2{
+  background-color: #ff8f8f;
+  border: none;
+  padding: 8px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.60rem;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  margin-top: 26px;
+
+  
+}
+
+/* Hover */
+.btn-registrar:hover {
+  transform: scale(1.05);
+}
+
+
+/* Cada registro */
+.registro-card{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.btn-editar {
+background-color: #e9d0bb;
+border: none;
+padding: 8px 42px;
+border-radius: 12px;
+cursor: pointer;
+color: #9A5D23;
+font-size: 0.60rem;
+font-weight: bold;
+transition: 0.3s;
+margin-top: 12px;
+ box-shadow: 0 5px 6px rgba(0,0,0,0.26);
+}
+/* Hover */
+.btn-editar:hover {
+transform: scale(1.05);
+}
+
+.btn-excluir{
+  background-color: hsl(28, 100%, 76%);
+  border: none;
+  padding: 8px 42px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #9A5D23;
+  font-size: 0.60rem;
+  font-weight: bold;
+  transition: 0.3s;
+  margin-top: 12px;
+  box-shadow: 0 5px 6px rgba(0,0,0,0.26);
+}
+/* Hover */
+.btn-excluir:hover {
+transform: scale(1.05);
+}
+
+/* Linha dos botões */
+.botoes-registro{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
