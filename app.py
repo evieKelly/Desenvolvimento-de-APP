@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, Diario, RegistroHumor
-from datetime import datetime, timedelta
+from datetime import datetime, date, timedelta
 import locale
 import random
 
