@@ -1,0 +1,103 @@
+/* ============================================
+   CONTATOS DE APOIO - Ánimo
+   Tela: Contatos (Deivid)
+   ============================================ */
+
+/* Fundo creme suave, no mesmo padrao das outras telas */
+.app-container {
+    background: linear-gradient(to bottom, #FCF7DA 0%, #FBEBE0 100%);
+    overflow-y: auto;
+    padding: 22px 20px 30px 20px;
+}
+
+/* Topo com o botao de voltar */
+.topo-pagina {
+    margin-bottom: 10px;
+}
+
+/* Botao de voltar (setinha), igual ao das outras telas */
+.btn-voltar {
+    width: 60px;
+    height: 32px;
+    background-color: #f8b26a;
+    color: white;
+    border: 2px solid #5c3b46;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Titulo da tela */
+.titulo-pagina {
+    color: #B5453E;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Texto de apoio embaixo do titulo */
+.subtitulo {
+    color: #C56B66;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+/* Lista de contatos empilhada */
+.lista-contatos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Cada contato e um cartao clicavel (link tel:).
+   Empilho o nome, o numero grande e a descricao. */
+.contato-card {
+    background-color: #F4C7C3;
+    border-radius: 20px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-decoration: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.15s ease;
+}
+
+/* Efeito de apertar ao tocar, igual aos outros cartoes */
+.contato-card:active {
+    transform: scale(0.97);
+}
+
+/* Nome do contato */
+.contato-nome {
+    color: #B5453E;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* Numero grande, que e o que mais importa aqui */
+.contato-numero {
+    color: #7A2E27;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+/* Descricao curta do contato */
+.contato-desc {
+    color: #C56B66;
+    font-size: 14px;
+}
+
+/* Aviso final */
+.aviso {
+    color: #B5453E;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 24px;
+    line-height: 1.4;
+}

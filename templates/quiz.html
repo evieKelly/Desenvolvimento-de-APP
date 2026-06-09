@@ -3,13 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ánimo - Login</title>
-    
+    <title>Ánimo - Registro de Humor</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
-    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
 </head>
 <body>
-    
+
+    <div class="app-container">
+
+        <!-- Topo: botao de voltar para a tela inicial -->
+        <header class="topo-pagina">
+            <a href="{{ url_for('tela_inicial') }}" class="btn-voltar" aria-label="Voltar">←</a>
+        </header>
+
+        <!-- Pergunta principal do quiz -->
+        <h2 class="titulo-quiz">Como você está se sentindo hoje?</h2>
+        <p class="subtitulo-quiz">Toque na carinha que mais combina com o seu momento.</p>
+
+        <!-- Formulario com as 5 opcoes de humor.
+             Cada botao manda o texto do humor no campo "humor" via POST.
+             Uso os mesmos nomes do MAPA_HUMOR do Luiz pra Tela Inicial entender,
+             e que tambem servem pro relatorio mensal do Augusto. -->
+        <form class="form-humor" method="POST" action="{{ url_for('quiz') }}">
+
+            <button type="submit" name="humor" value="Muito triste" class="opcao-humor">
+                <img src="{{ url_for('static', filename='img/icones/humor_1.png') }}" alt="">
+                <span>Muito triste</span>
+            </button>
+
+            <button type="submit" name="humor" value="Triste" class="opcao-humor">
+                <img src="{{ url_for('static', filename='img/icones/humor_2.png') }}" alt="">
+                <span>Triste</span>
+            </button>
+
+            <button type="submit" name="humor" value="Neutro" class="opcao-humor">
+                <img src="{{ url_for('static', filename='img/icones/humor_3.png') }}" alt="">
+                <span>Neutro</span>
+            </button>
+
+            <button type="submit" name="humor" value="Bem" class="opcao-humor">
+                <img src="{{ url_for('static', filename='img/icones/humor_4.png') }}" alt="">
+                <span>Bem</span>
+            </button>
+
+            <button type="submit" name="humor" value="Muito feliz" class="opcao-humor">
+                <img src="{{ url_for('static', filename='img/icones/humor_5.png') }}" alt="">
+                <span>Muito feliz</span>
+            </button>
+
+        </form>
+
+    </div>
+
 </body>
 </html>

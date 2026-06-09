@@ -1,0 +1,89 @@
+/* ============================================
+   QUIZ / REGISTRO DE HUMOR - Ánimo
+   Tela: Registro Diario de Humor (Deivid)
+   ============================================ */
+
+/* Fundo creme suave, igual a Tela Inicial pra ficar na mesma linha */
+.app-container {
+    background: linear-gradient(to bottom, #FCF7DA 0%, #FBEBE0 100%);
+    overflow-y: auto;
+    padding: 22px 20px 30px 20px;
+}
+
+/* Topo com o botao de voltar */
+.topo-pagina {
+    margin-bottom: 10px;
+}
+
+/* Botao de voltar (mesma carinha dos outros: setinha) */
+.btn-voltar {
+    width: 60px;
+    height: 32px;
+    background-color: #f8b26a;
+    color: white;
+    border: 2px solid #5c3b46;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Pergunta principal */
+.titulo-quiz {
+    color: #B5453E;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Textinho de apoio embaixo da pergunta */
+.subtitulo-quiz {
+    color: #C56B66;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+/* O formulario empilha as opcoes uma embaixo da outra */
+.form-humor {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Cada opcao de humor e um botao largo com a carinha + o nome.
+   Tiro o estilo padrao de botao pra ele parecer um cartao. */
+.opcao-humor {
+    background-color: #F4C7C3;
+    border: none;
+    border-radius: 20px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.15s ease;
+}
+
+/* Efeito de "apertar" quando clica, igual aos atalhos da Tela Inicial */
+.opcao-humor:active {
+    transform: scale(0.97);
+}
+
+/* Tamanho da carinha dentro da opcao */
+.opcao-humor img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+/* Nome do humor */
+.opcao-humor span {
+    color: #B5453E;
+    font-size: 19px;
+    font-weight: 600;
+}

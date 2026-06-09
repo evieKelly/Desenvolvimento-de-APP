@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, Diario, RegistroHumor
+from datetime import date, timedelta
 import random
 
 app = Flask(__name__)
@@ -183,15 +184,27 @@ def forms():
     return render_template('forms.html')
 
 # RESPONSÁVEL: Deivid
-# TELA: Quiz 
-@app.route('/quiz')
+# TELA: Quiz
+# o quiz mostra as 5 carinhas de humor. quando o usuário clica em uma,
+# o formulário manda o texto do humor por POST e eu salvo na tabela
+# RegistroHumor. depois mando ele pra Tela Inicial, que já recalcula a média.
+@app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
+    if request.method == 'POST':
+        humor = request.form['humor']
+        registro = RegistroHumor(humor=humor)
+        db.session.add(registro)
+        db.session.commit()
+        return redirect(url_for('tela_inicial'))
+
     return render_template('quiz.html')
 
 
 
 # RESPONSÁVEL: Augusto
 # TELA: Relatório Semanal
+# Luiz: liguei no banco. aqui são só 4 categorias, então junto as notas:
+# 1 e 2 viram Triste, 3 Neutro, 4 Calmo e 5 Feliz. devolvo a % de cada uma.
 @app.route('/relatorio-semanal')
 def relatorio_semanal():
     humores = {
@@ -201,6 +214,19 @@ def relatorio_semanal():
         "Triste": 0
     }
 
+    rotulo_por_nota = {1: "Triste", 2: "Triste", 3: "Neutro", 4: "Calmo", 5: "Feliz"}
+
+    # só os registros dos últimos 7 dias
+    limite = date.today() - timedelta(days=7)
+    registros = RegistroHumor.query.filter(RegistroHumor.data >= limite).all()
+    for r in registros:
+        humores[rotulo_por_nota[nota_do_registro(r)]] += 1
+
+    total = len(registros)
+    if total > 0:
+        for chave in humores:
+            humores[chave] = round(humores[chave] / total * 100)
+
     return render_template(
         'relatorio_semanal.html',
         humores=humores
@@ -208,6 +234,8 @@ def relatorio_semanal():
 
 # RESPONSÁVEL: Augusto
 # TELA: Relatório Mensal
+# Luiz: liguei no banco. conto os registros do Quiz em cada categoria usando a
+# nota 1-5 (mesmo critério da Tela Inicial) e devolvo a % de cada humor.
 @app.route('/relatorio-mensal')
 def relatorio_mensal():
     humores = {
@@ -217,6 +245,19 @@ def relatorio_mensal():
         "Triste": 0,
         "Muito Triste": 0
     }
+
+    rotulo_por_nota = {1: "Muito Triste", 2: "Triste", 3: "Neutro", 4: "Bem", 5: "Muito Feliz"}
+
+    # só os registros dos últimos 30 dias
+    limite = date.today() - timedelta(days=30)
+    registros = RegistroHumor.query.filter(RegistroHumor.data >= limite).all()
+    for r in registros:
+        humores[rotulo_por_nota[nota_do_registro(r)]] += 1
+
+    total = len(registros)
+    if total > 0:
+        for chave in humores:
+            humores[chave] = round(humores[chave] / total * 100)
 
     return render_template(
         'relatorio_mensal.html',
