@@ -134,3 +134,41 @@
     text-align: center;
     line-height: 1.25;
 }
+
+/* ---------- Barra de navegação fixa embaixo ---------- */
+/* fica grudada no rodapé enquanto a tela rola (sticky).
+   as margens negativas anulam o padding do container pra barra
+   ir de ponta a ponta, igual ao Figma. */
+.barra-inferior {
+    position: sticky;
+    bottom: 0;
+    margin: 26px -20px -30px -20px;
+    background-color: #E5B6BB;
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* cada item da barra (os links) */
+.barra-inferior a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* tamanho das carinhas (casinha e telefone) */
+.barra-inferior svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* logo da Uniceplac dentro de um quadradinho branco, igual ao Figma */
+.barra-inferior .item-forms img {
+    background-color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    padding: 3px;
+}
