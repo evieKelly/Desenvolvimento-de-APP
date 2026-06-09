@@ -66,6 +66,14 @@
                 <span class="titulo-card">Centros de Atendimento</span>
             </a>
 
+            <!-- atalho pros Contatos de apoio (tela do Deivid).
+                 ainda não temos ícone próprio de contatos, então uso o de
+                 centros por enquanto. depois é só trocar a imagem. -->
+            <a href="{{ url_for('contatos') }}" class="card-atalho">
+                <img class="icone" src="{{ url_for('static', filename='img/icones/centros.png') }}" alt="">
+                <span class="titulo-card">Contatos de Apoio</span>
+            </a>
+
         </section>
 
     </div>
