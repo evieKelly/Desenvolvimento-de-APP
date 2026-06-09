@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from models import db, Diario, RegistroHumor
+from models import db, Diario, RegistroHumor, Usuario
 from datetime import date, timedelta
 import random
 
@@ -34,25 +34,78 @@ sugestoes = [
 ]
 
 
+# ==============================================================================
 # RESPONSÁVEL: Kelly 
+# ==============================================================================
+
 # TELA: Login (Página Inicial obrigatória)
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method == 'POST':
+        email_digitado = request.form.get('email')
+        senha_digitada = request.form.get('senha')
+        
+        # Busca o usuário no banco de dados
+        usuario = Usuario.query.filter_by(email=email_digitado).first()
+        
+        # Verifica se o usuário existe e se a senha bate
+        if usuario and usuario.senha == senha_digitada:
+            # Login efetuado com sucesso! Redireciona para a tela interna do Luiz
+            return redirect(url_for('tela_inicial'))
+        else:
+            # Se errar, devolve uma mensagem de alerta na tela
+            flash('E-mail ou senha incorretos!', 'erro')
+            
     return render_template('index.html')
 
 
-
-# RESPONSÁVEL: Kelly
 # TELA: Cadastro de Usuário
-@app.route('/cadastro')
+@app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        email = request.form.get('email')
+        idade = request.form.get('idade')
+        senha = request.form.get('senha')
+        # Captura o campo de confirmação do seu formulário
+        confirme_senha = request.form.get('confirme_senha') 
+        
+        # Validação simples: as senhas precisam ser iguais
+        if senha != confirme_senha:
+            flash('As senhas não coincidem!', 'erro')
+            return render_template('cadastro.html')
+            
+        # Verifica se o email já está cadastrado
+        email_existente = Usuario.query.filter_by(email=email).first()
+        if email_existente:
+            flash('Este e-mail já está cadastrado!', 'erro')
+            return render_template('cadastro.html')
+            
+        # Salva o novo usuário no banco.db
+        novo_usuario = Usuario(nome=nome, email=email, idade=int(idade), senha=senha)
+        db.session.add(novo_usuario)
+        db.session.commit()
+        
+        # Cadastro feito! Redireciona para o login para ele logar
+        flash('Cadastro realizado com sucesso! Faça seu login.', 'sucesso')
+        return redirect(url_for('index'))
+
     return render_template('cadastro.html')
 
-# RESPONSÁVEL: Kelly
+
 # TELA: Recuperação de Senha
-@app.route('/recuperar-senha')
+@app.route('/recuperar-senha', methods=['GET', 'POST'])
 def recuperar_senha():
-    return render_template('recuperar_senha.html')
+    if request.method == 'POST':
+        email = request.form.get('email')
+        
+       
+        usuario = Usuario.query.filter_by(email=email).first()
+        
+      
+        return render_template('recuperar_senha.html', enviado=True)
+
+    return render_template('recuperar_senha.html', enviado=False)
 
 # RESPONSÁVEL: Luiz
 # aqui eu calculo o humor médio com as notas de 1 a 5 e já devolvo pronto pra

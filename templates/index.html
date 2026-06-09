@@ -18,13 +18,13 @@
 
         <h3 class="boas-vindas">Bem vindo (a)</h3>
 
-        <form class="login-form">
+        <form class="login-form" method="POST" action="/">
             <div class="input-grupo">
-                <input type="email" required placeholder="Email">
+                <input type="email" name="email" required placeholder="Email">
             </div>
 
             <div class="input-grupo">
-                <input type="password" required placeholder="Senha">
+                <input type="password" name="senha" required placeholder="Senha">
             </div>
 
             <button type="submit" class="btn-login">Login</button>

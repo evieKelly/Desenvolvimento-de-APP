@@ -18,25 +18,26 @@
 
         <h3 class="boas-vindas">Cadastre-se</h3>
 
-        <form class="cadastro-form">
+       <form class="cadastro-form" method="POST" action="/cadastro">
+            
             <div class="input-grupo">
-                <input type="text" required placeholder="Nome">
+                <input type="text" name="nome" required placeholder="Nome">
             </div>
 
             <div class="input-grupo">
-                <input type="email" required placeholder="Email">
+                <input type="email" name="email" required placeholder="Email">
             </div>
 
             <div class="input-grupo">
-                <input type="number" required placeholder="Idade" min="0">
+                <input type="number" name="idade" required placeholder="Idade" min="0">
             </div>
 
             <div class="input-grupo">
-                <input type="password" required placeholder="Senha">
+                <input type="password" name="senha" required placeholder="Senha">
             </div>
 
             <div class="input-grupo">
-                <input type="password" required placeholder="Confirme sua senha">
+                <input type="password" name="confirme_senha" required placeholder="Confirme sua senha">
             </div>
 
             <div class="termos-container">
