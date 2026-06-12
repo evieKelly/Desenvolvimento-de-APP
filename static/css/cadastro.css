@@ -7,6 +7,11 @@
     justify-content: flex-start; 
     padding: 20px 30px 15px 30px; 
     box-sizing: border-box; 
+      overflow-y: auto;
+  scrollbar-width: none; 
+}
+.app-container::-webkit-scrollbar{
+  display: none; /* Chrome, Edge, Safari */
 }
 
 .logo-img {

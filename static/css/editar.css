@@ -61,7 +61,7 @@ overflow-y: auto;
   border:none;
 }
 
-.texto-area{
+.texto-area3{
    width: 270px; 
   height: 120px;
   border: none;
@@ -75,10 +75,10 @@ overflow-y: auto;
   overflow-y: auto;
   scrollbar-width: none; 
 }
-.texto-area::-webkit-scrollbar{
+.texto-area3::-webkit-scrollbar{
   display: none; 
 }
-.texto-area:focus{
+.texto-area3:focus{
 background-color: #eed7c1;
   border-color: #b9926e; 
   outline: none;        
@@ -112,4 +112,4 @@ background-color: #eed7c1;
  margin-right: 7px;
   transition: 0.3s;
 
-}
+} 

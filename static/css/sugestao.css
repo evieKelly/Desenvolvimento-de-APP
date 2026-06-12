@@ -115,50 +115,6 @@ width: 260px;
   margin-bottom: 3px;
 }
 
-/* Conteiner botões */
-.container-botoes {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 2px;
-}
-
-/* Botão ignorar*/
-.btn-ignorar {
-  background-color: #f3d7d7;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 12px;
-  cursor: pointer;
-  color: #b24d4d;
-  font-size: 0.60rem;
-   box-shadow: 0 5px 6px rgba(0,0,0,0.26);
-  transition: 0.3s;
-}
-/* Hover */
-.btn-ignorar:hover {
-  transform: scale(1.05);
-}
-
-/* Botão registrar */
-.btn-registrar {
-  background-color: #ff8f8f;
-  border: none;
-  padding: 8px 8px;
-  border-radius: 12px;
-  cursor: pointer;
-  color: white;
-  font-size: 0.60rem;
-  font-weight: bold;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-  transition: 0.3s;
-   box-shadow: 0 5px 6px rgba(0,0,0,0.26);
-}
-/* Hover */
-.btn-registrar:hover {
-  transform: scale(1.05);
-}
 
 
 

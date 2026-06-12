@@ -6,6 +6,12 @@
     align-items: center;
     padding: 25px 30px 20px 30px; 
     box-sizing: border-box; 
+      overflow-y: auto;
+  scrollbar-width: none; 
+}
+.app-container::-webkit-scrollbar{
+  display: none; /* Chrome, Edge, Safari */
+
 }
 
 .logo-img {
@@ -22,7 +28,6 @@
     margin-bottom: 15px; 
     text-align: center;
 }
-
 .login-form {
     width: 100%;
     display: flex;

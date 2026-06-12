@@ -20,19 +20,7 @@ class RegistroHumor(db.Model):
 
 # tabela diário (Amanda)
 class Diario(db.Model):
-
-    __tablename__ = "diario"
-
-    id = db.Column(
-        db.Integer,
-        primary_key=True
-    )
-
-    texto = db.Column(
-        db.Text,
-        nullable=False
-    )
-
-    data = db.Column(
-        db.String(50)
-    )
+    id = db.Column(db.Integer,primary_key=True)
+    texto = db.Column(db.Text,nullable=False)
+    data = db.Column(db.Date,nullable=False,default=date.today) 
+    usuario_id = db.Column(db.Integer, nullable=False)

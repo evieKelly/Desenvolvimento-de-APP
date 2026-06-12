@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, session,render_template, request, redirect, url_for, flash
 from models import db, Diario, RegistroHumor, Usuario
 from datetime import datetime, date, timedelta
 import random
@@ -7,6 +7,8 @@ import locale
 app = Flask(__name__)
 app.secret_key = 'chave_secreta' 
 
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///banco.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
 # ==============================================================================
@@ -25,7 +27,12 @@ def index():
         
         # Verifica se o usuário existe e se a senha bate
         if usuario and usuario.senha == senha_digitada:
-            # Login efetuado com sucesso! Redireciona para a tela interna do Luiz
+
+            session['usuario_id'] = usuario.id
+            session['usuario_nome'] = usuario.nome
+
+            print("SESSÃO CRIADA:", dict(session))
+
             return redirect(url_for('tela_inicial'))
         else:
             # Se errar, devolve uma mensagem de alerta na tela
@@ -153,16 +160,21 @@ def contatos():
     return render_template('contatos.html')
 
 #-------------------------------------------------------------------------------
-# RESPONSÁVEL: Amanda
+ #RESPONSÁVEL: Amanda
 # TELA: diário
 # Configurações do Banco de Dados (Movidas para o topo)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///diario.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
 @app.route("/diario")
 def diario():
 
-    registros = Diario.query.all()
+    print("SESSION NO DIARIO:", dict(session))
+
+    if 'usuario_id' not in session:
+        return redirect(url_for('index'))
+
+    registros = Diario.query.filter_by(
+        usuario_id=session['usuario_id']
+    ).all()
 
     hoje = datetime.now().strftime("%d de %B")
 
@@ -175,7 +187,10 @@ def diario():
 @app.route("/deletar/<int:id>")
 def deletar(id):
 
-    registro = Diario.query.get(id)
+    registro = Diario.query.filter_by(
+    id=id,
+    usuario_id=session['usuario_id']
+    ).first()
 
     if registro: 
         db.session.delete(registro)
@@ -187,7 +202,13 @@ def deletar(id):
 @app.route("/editar/<int:id>", methods=["GET", "POST"])
 def editar(id):
 
-    registro = Diario.query.get(id)
+    registro = Diario.query.filter_by(
+        id=id,
+        usuario_id=session['usuario_id']
+    ).first()
+
+    if registro is None:
+        return redirect("/diario")
 
     if request.method == "POST":
 
@@ -196,7 +217,7 @@ def editar(id):
         db.session.commit()
 
         return redirect("/diario")
-    
+
     return render_template(
         "editar.html",
         registro=registro
@@ -205,13 +226,22 @@ def editar(id):
 
 @app.route("/registrar", methods=["POST"])
 def registrar():
-    texto = request.form["texto"]
+
+    texto = request.form["texto"].strip()
+
+    if texto == "":
+        return render_template(
+            "diario.html",
+            registros=Diario.query.filter_by(
+            usuario_id=session['usuario_id']).all(),
+            hoje=datetime.now().strftime("%d de %B"),
+            erro="Insira uma mensagem antes de salvar."
+        )
 
     novo = Diario(
         texto=texto,
-        data=str(datetime.now())
-    )
-
+        usuario_id=session['usuario_id']
+)
     db.session.add(novo)
     db.session.commit()
 

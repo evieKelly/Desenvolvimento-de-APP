@@ -130,6 +130,101 @@ text-align: center;
   word-break: break-word;
 }
 
+.btn-registrar{
+  background-color: #ff8f8f;
+  border: none;
+  padding: 8px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.60rem;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  margin-top: 26px;
+
+  
+}
+
+.texto-area{
+   width: 270px; 
+  height: 120px;
+  border: none;
+  outline: none;
+  background: #f0ecec;
+  color: #D44949;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  overflow-y: auto;
+  scrollbar-width: none; 
+}
+.texto-area::-webkit-scrollbar{
+  display: none; 
+}
+.texto-area:focus{
+background-color: #eed7c1;
+  border-color: #b9926e; 
+  outline: none;        
+
+
+}
+
+/* Hover */
+.btn-registrar:hover {
+  transform: scale(1.05);
+}
+
+.btn-salvar{
+  background-color: #ff8f8f;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.60rem;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  
+}
+.btn-salvar2{
+    background-color: #ff8f8f;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.60rem;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  
+}
+
+.btn-salvar2{
+  background-color: #ff8f8f;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.60rem;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  
+}
+
+/* Cada registro */
+.registro-card{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
 .btn-registrar2{
   background-color: #ff8f8f;
   border: none;
@@ -147,19 +242,34 @@ text-align: center;
 }
 
 /* Hover */
-.btn-registrar:hover {
+.btn-registrar2:hover {
   transform: scale(1.05);
 }
 
-
-/* Cada registro */
-.registro-card{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
+.texto-area2{
+   width: 270px; 
+  height: 120px;
+  border: none;
+  outline: none;
+  background: #f0ecec;
+  color: #D44949;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  overflow-y: auto;
+  scrollbar-width: none; 
 }
+.texto-area2::-webkit-scrollbar{
+  display: none; 
+}
+.texto-area2:focus{
+background-color: #eed7c1;
+  border-color: #b9926e; 
+  outline: none;        
 
+
+}
 .btn-editar {
 background-color: #e9d0bb;
 border: none;
