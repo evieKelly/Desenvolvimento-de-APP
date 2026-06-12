@@ -1,15 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br"> 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ánimo - Login</title>
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}">
+    <title>Ánimo - Formulário UNICEPLAC</title> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}"> 
 </head>
 <body>
-    
+
+    <main class="app-container">
+
+        <div style="width: 100%; max-width: 400px; display: flex; justify-content: flex-start; margin-bottom: 10px;">
+            <a href="{{ url_for('tela_inicial') }}" class="btn-voltar-imagem" title="Voltar para a tela inicial">
+                <img src="{{ url_for('static', filename='img/voltar.png') }}" alt="Voltar" width="85">
+            </a>
+        </div>
+
+        <header class="topo-formulario">
+            <h1>FORMULÁRIO UNICEPLAC</h1>
+        </header>
+
+        <div class="container-logos">
+            <img src="{{ url_for('static', filename='img/LogoAnimo.png') }}" alt="Logo Ánimo" class="logo-formulario">
+            
+            <img src="{{ url_for('static', filename='img/logo_uniceplacpsico.png') }}" alt="Logo Psicologia Uniceplac" class="logo-formulario">
+        </div>
+
+        <article class="caixa-explicativa">
+            <p>Este formulário tem o objetivo de captar demandas da comunidade interna e externa para atividades de extensão universitária na UNICEPLAC. Para solicitar o apoio, o interessado deve preencher o documento e encaminhá-lo ao Núcleo de Iniciação Científica (NIC) com uma antecedência mínima de 30 dias a partir da data do evento.</p>
+            
+            <p>Além disso, é necessário anexar um ofício contratado pelo responsável, preferencialmente em papel timbrado da entidade demandante, endereçado à reitoria da instituição.</p>
+            
+            <p>Por fim, a reitoria e as coordenadas de cursos avaliarão as informações declaradas para verificar as previsões do atendimento e responderão assim que possível.</p>
+        </article>
+
+        <section class="acoes-formulario">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfcq8mAEjE4lEVBauuALU3xhxNedt3323cNt7g5v7LcbgU2sA/viewform" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn-preencher">
+               Acessar Formulário
+            </a>
+        </section>
+
+    </main>
+
 </body>
 </html>

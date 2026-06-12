@@ -310,12 +310,96 @@ def relatorio_mensal():
     )
 
 
+# ==============================================================================
 # RESPONSÁVEL: Eduardo
 # TELA: Exercícios de Respiração
+# ==============================================================================
+import threading
+import time
+from flask import jsonify
+
+# Variáveis globais para controlar o estado da respiração
+atividade_rodando = False
+estado_atual = {
+    "fase": "Clique abaixo para começar",
+    "tempo": "0s",
+    "porcentagem": 0
+}
+
+def ciclo_respiracao():
+    global atividade_rodando, estado_atual
+    
+    fases = [
+        {"nome": "Inspire pelo nariz...", "tempo": 4},
+        {"nome": "Segure o ar nos pulmões...", "tempo": 7},
+        {"nome": "Expire lentamente pela boca...", "tempo": 8}
+    ]
+    
+    ciclos_totais = 4
+    tempo_total_tecnica = (4 + 7 + 8) * ciclos_totais
+    tempo_decorrido_geral = 0
+
+    for ciclo in range(ciclos_totais):
+        if not atividade_rodando:
+            break
+            
+        for fase in fases:
+            if not atividade_rodando:
+                return
+                
+            nome_fase = fase["nome"]
+            tempo_fase = fase["tempo"]
+            
+            for segundo in range(tempo_fase, -1, -1):
+                if not atividade_rodando:
+                    return
+                
+                porcentagem = (tempo_decorrido_geral / tempo_total_tecnica) * 100
+                
+                estado_atual["fase"] = nome_fase
+                estado_atual["tempo"] = f"{segundo}s"
+                estado_atual["porcentagem"] = porcentagem
+                
+                if segundo > 0:
+                    time.sleep(1)
+                    tempo_decorrido_geral += 1
+
+    if atividade_rodando:
+        estado_atual["fase"] = "Parabéns!<br>Atividade Concluída 🎉"
+        estado_atual["tempo"] = "Fim"
+        estado_atual["porcentagem"] = 100
+        atividade_rodando = False
+
+
 @app.route('/respiracao')
 def respiracao():
-    return render_template('respiracao.html') 
+    return render_template('respiracao.html')
 
+
+@app.route('/alternar', methods=['POST'])
+def alternar_atividade():
+    global atividade_rodando, estado_atual
+    
+    if atividade_rodando:
+        atividade_rodando = False
+        estado_atual = {
+            "fase": "Clique abaixo para começar",
+            "tempo": "0s",
+            "porcentagem": 0
+        }
+        return jsonify({"botao": "Iniciar/Parar"})
+    else:
+        atividade_rodando = True
+        thread_atual = threading.Thread(target=ciclo_respiracao)
+        thread_atual.daemon = True
+        thread_atual.start()
+        return jsonify({"botao": "Parar"})
+
+
+@app.route('/status', methods=['GET'])
+def obter_status():
+    global estado_atual
+    return jsonify(estado_atual)
 
 #-----------------------------------------------------------------
 # RESPONSÁVEL: Amanda
