@@ -174,7 +174,12 @@ def contatos():
  #RESPONSÁVEL: Amanda
 # TELA: diário
 # Configurações do Banco de Dados (Movidas para o topo)
-locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+# tenta deixar as datas em português; se o servidor não tiver esse idioma
+# instalado, segue sem travar (a data só fica em inglês como reserva).
+try:
+    locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+except locale.Error:
+    pass
 @app.route("/diario")
 def diario():
 
@@ -497,5 +502,7 @@ with app.app_context():
     db.create_all()
 
 if __name__ == '__main__':
-    # debug=True faz o Flask reiniciar sozinho sempre que vocês alterarem o código
-    app.run(debug=True)
+    # debug fica desligado pra rodar em servidor público (hospedagem).
+    # se quiser desenvolver localmente com recarregamento automático,
+    # troque pra debug=True só na sua máquina.
+    app.run(debug=False)
