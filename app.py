@@ -151,10 +151,21 @@ def tela_inicial():
     notas_humor = [nota_do_registro(r) for r in registros]
 
     humor = calcular_humor_medio(notas_humor)
-    return render_template('tela_inicial.html', humor=humor)
+
+    # nome de quem está logado, pra mostrar no "Olá, ..." (vem do login da Kelly)
+    nome = session.get('usuario_nome')
+    return render_template('tela_inicial.html', humor=humor, nome=nome)
+
+# RESPONSÁVEL: Luiz
+# sair da conta: limpa a sessão e volta pro login.
+# é o ícone de porta na barra de baixo da tela inicial.
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 
 # RESPONSÁVEL: Deivid
-# TELA: Contatos 
+# TELA: Contatos
 @app.route('/contatos')
 def contatos():
     return render_template('contatos.html')

@@ -2,8 +2,6 @@
 __pycache__/
 *.pyc
 
-# Ferramentas locais /
-.claude/
-.code-review-graph/
+# Editores
 .vscode/
 .idea/
