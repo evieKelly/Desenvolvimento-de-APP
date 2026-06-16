@@ -18,7 +18,7 @@
 
         <h3 class="boas-vindas">Cadastre-se</h3>
 
-       <form class="cadastro-form" method="POST" action="/cadastro">
+        <form class="cadastro-form" method="POST" action="/cadastro">
             
             <div class="input-grupo">
                 <input type="text" name="nome" required placeholder="Nome">
@@ -42,12 +42,12 @@
 
             <div class="termos-container">
                 <label class="checkbox-label">
-                    <input type="checkbox" required>
-                    <span>Li e aceito: <a href="#">Termos de Uso</a></span>
+                    <input type="checkbox" name="aceita_termos" required>
+                    <span>Li e aceito: <a href="#" id="linkTermos">Termos de Uso</a></span>
                 </label>
                 <label class="checkbox-label">
-                    <input type="checkbox" required>
-                    <span>Li e aceito: <a href="#">Política de Privacidade</a></span>
+                    <input type="checkbox" name="aceita_privacidade" required>
+                    <span>Li e aceito: <a href="#" id="linkPrivacidade">Política de Privacidade</a></span>
                 </label>
             </div>
 
@@ -55,12 +55,70 @@
         </form>
 
         <div class="cadastro-footer">
-            <a href="{{ url_for('index') }}" class="btn-voltar">
-                &#x21aa; <!-- simbolo do voltar -->
-            </a>
+            <a href="{{ url_for('index') }}" class="btn-voltar">&#x21aa;</a>
         </div>
 
     </div>
+
+    <div id="modalTermos" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Termos de Uso - Ânimo</h2>
+                <button class="btn-fechar" onclick="fecharModal('modalTermos')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Bem-vindo ao aplicativo Ânimo. Ao utilizar nossa plataforma de monitoramento emocional e diário pessoal, você concorda com os seguintes termos:</p>
+                <p><strong>1. Objetivo do App:</strong> O Ânimo é um protótipo acadêmico desenvolvido para fins de registro pessoal e autoconhecimento emocional. Ele não substitui acompanhamento psicológico ou médico profissional.</p>
+                <p><strong>2. Uso de Conta:</strong> Você é responsável por manter a confidencialidade da sua senha criada neste cadastro.</p>
+                <p><strong>3. Responsabilidade do Conteúdo:</strong> Suas anotações no diário e registros de humor são estritamente privados e armazenados localmente para sua visualização.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalPrivacidade" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Política de Privacidade</h2>
+                <button class="btn-fechar" onclick="fecharModal('modalPrivacidade')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Sua privacidade é nossa prioridade máxima no Ânimo. Veja como lidamos com seus dados:</p>
+                <p><strong>1. Coleta de Dados:</strong> Coletamos apenas as informações básicas fornecidas neste formulário (Nome, Email, Idade) e os dados inseridos por você na tela de diário e humor.</p>
+                <p><strong>2. Armazenamento Seguro:</strong> Suas senhas passam por um processo de criptografia hash antes de serem salvas no nosso banco de dados, protegendo sua integridade.</p>
+                <p><strong>3. Compartilhamento:</strong> Sendo um projeto de desenvolvimento de software, nenhum dado coletado aqui será vendido, exposto ou compartilhado com terceiros.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modalTermos = document.getElementById('modalTermos');
+        const modalPrivacidade = document.getElementById('modalPrivacidade');
+        const linkTermos = document.getElementById('linkTermos');
+        const linkPrivacidade = document.getElementById('linkPrivacidade');
+
+        linkTermos.onclick = function(e) {
+            e.preventDefault();
+            modalTermos.style.display = "block";
+        }
+
+        linkPrivacidade.onclick = function(e) {
+            e.preventDefault();
+            modalPrivacidade.style.display = "block";
+        }
+
+        function fecharModal(idModal) {
+            document.getElementById(idModal).style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modalTermos) {
+                modalTermos.style.display = "none";
+            }
+            if (event.target == modalPrivacidade) {
+                modalPrivacidade.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 </html>
