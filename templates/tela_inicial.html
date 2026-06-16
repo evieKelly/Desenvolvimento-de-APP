@@ -12,9 +12,12 @@
 
     <div class="app-container">
 
-        <!-- Saudação principal -->
+      <!-- area que rola (tudo menos a barra de baixo) -->
+      <div class="conteudo">
+
+        <!-- Saudação principal (mostra o nome de quem está logado) -->
         <header class="saudacao-card">
-            <h1 class="ola">Olá!</h1>
+            <h1 class="ola">Olá{% if nome %}, {{ nome }}{% endif %}!</h1>
             <p class="pergunta">Como você está se sentindo hoje?</p>
         </header>
 
@@ -68,17 +71,21 @@
 
         </section>
 
+      </div>
+      <!-- fim da area que rola -->
+
         <!-- Barra de navegacao fixa embaixo (igual ao Figma):
-             casinha leva pra propria tela inicial, telefone pros Contatos
-             e o logo da Uniceplac leva pro formulario (tela Forms do Eduardo).
-             a casinha e o telefone sao icones simples desenhados aqui. -->
+             na tela inicial o primeiro icone e uma porta de saida (logout),
+             o telefone leva pros Contatos e o logo da Uniceplac leva pro
+             formulario (tela Forms do Eduardo). -->
         <nav class="barra-inferior">
 
-            <!-- Casinha: volta pro menu inicial (esta mesma tela) -->
-            <a href="{{ url_for('tela_inicial') }}" aria-label="Tela inicial">
+            <!-- Porta de saida: aqui na tela inicial serve pra sair da conta -->
+            <a href="{{ url_for('logout') }}" aria-label="Sair da conta">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
-                    <path d="M3 11l9-8 9 8"></path>
-                    <path d="M5 10v9h14v-9"></path>
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <path d="M16 17l5-5-5-5"></path>
+                    <path d="M21 12H9"></path>
                 </svg>
             </a>
 

@@ -3,17 +3,24 @@
    Responsável: Luiz
    ============================================ */
 
-/* Fundo creme suave desta tela */
+/* Fundo creme suave desta tela.
+   o container em si NAO rola: quem rola e a area .conteudo aqui de baixo.
+   assim a barra de navegacao fica sempre grudada no rodape. */
 .app-container {
     background: linear-gradient(to bottom, #FCF7DA 0%, #FBEBE0 100%);
-    overflow-y: auto;
-    padding: 22px 20px 30px 20px;
-      overflow-y: auto;
-  scrollbar-width: none; 
+    padding: 0;
+    overflow: hidden;
 }
-.app-container::-webkit-scrollbar{
-  display: none; /* Chrome, Edge, Safari */
 
+/* area que rola (tudo menos a barra de baixo) */
+.conteudo {
+    flex: 1;
+    overflow-y: auto;
+    padding: 22px 20px 16px 20px;
+    scrollbar-width: none;            /* esconde a barra de rolagem no Firefox */
+}
+.conteudo::-webkit-scrollbar {
+    display: none;                    /* esconde no Chrome, Edge, Safari */
 }
 
 /* ---------- Saudação (card coral do topo) ---------- */
@@ -146,9 +153,7 @@
    as margens negativas anulam o padding do container pra barra
    ir de ponta a ponta, igual ao Figma. */
 .barra-inferior {
-    position: sticky;
-    bottom: 0;
-    margin: 26px -20px -30px -20px;
+    flex-shrink: 0;                   /* nunca encolhe: fica fixa no rodape */
     background-color: #E5B6BB;
     padding: 14px 0;
     display: flex;

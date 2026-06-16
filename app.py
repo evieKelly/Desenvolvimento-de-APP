@@ -151,10 +151,21 @@ def tela_inicial():
     notas_humor = [nota_do_registro(r) for r in registros]
 
     humor = calcular_humor_medio(notas_humor)
-    return render_template('tela_inicial.html', humor=humor)
+
+    # nome de quem está logado, pra mostrar no "Olá, ..." (vem do login da Kelly)
+    nome = session.get('usuario_nome')
+    return render_template('tela_inicial.html', humor=humor, nome=nome)
+
+# RESPONSÁVEL: Luiz
+# sair da conta: limpa a sessão e volta pro login.
+# é o ícone de porta na barra de baixo da tela inicial.
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
 
 # RESPONSÁVEL: Deivid
-# TELA: Contatos 
+# TELA: Contatos
 @app.route('/contatos')
 def contatos():
     return render_template('contatos.html')
@@ -163,7 +174,12 @@ def contatos():
  #RESPONSÁVEL: Amanda
 # TELA: diário
 # Configurações do Banco de Dados (Movidas para o topo)
-locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+# tenta deixar as datas em português; se o servidor não tiver esse idioma
+# instalado, segue sem travar (a data só fica em inglês como reserva).
+try:
+    locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+except locale.Error:
+    pass
 @app.route("/diario")
 def diario():
 
@@ -486,5 +502,7 @@ with app.app_context():
     db.create_all()
 
 if __name__ == '__main__':
-    # debug=True faz o Flask reiniciar sozinho sempre que vocês alterarem o código
-    app.run(debug=True)
+    # debug fica desligado pra rodar em servidor público (hospedagem).
+    # se quiser desenvolver localmente com recarregamento automático,
+    # troque pra debug=True só na sua máquina.
+    app.run(debug=False)

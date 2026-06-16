@@ -1,68 +1,69 @@
-.container-respiracao {
-    background: linear-gradient(to bottom, #FFFFE4 75%, #DCA7B8 100%);
+/* ==============================================================================
+   RESPIRACAO.CSS - Estilos para a atividade de respiração
+   ============================================================================== */
+
+/* =========================================================
+   CONTAINER PRINCIPAL
+   ========================================================= */
+.app-container {
+    /* RECUPERANDO O DEGRADÊ ORIGINAL */
+    background: linear-gradient(to bottom, #FFFFE4 75%, #DCA7B8 100%) !important;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* FORÇA TUDO PARA O CENTRO DA TELA */
     justify-content: flex-start; 
     min-height: 100vh;
-    padding: 20px 24px; 
+    padding: 15px 20px; 
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.btn-voltar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 85px;               
-    height: 38px;              
-    background-color: #FCD2B2; 
-    color: white;              
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 18px;       
-    border: 1px solid #4A4A4A; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    transition: background-color 0.2s, opacity 0.2s, transform 0.1s;
+/* =========================================================
+   BOTÃO VOLTAR (IMAGEM)
+   ========================================================= */
+.btn-voltar-imagem {
+    border: none !important;      
+    background: none !important;  
+    padding: 0 !important;        
+    display: inline-block;
     cursor: pointer;
+    text-decoration: none;        
+    transition: transform 0.2s;   
+    align-self: flex-start; /* Mantém o botão voltar cravado na esquerda */
 }
 
-/* ALTERADO: Efeito de clique ajustado para não aplicar o espelhamento antigo */
-.btn-voltar:active {
-    transform: scale(0.95); 
+.btn-voltar-imagem:active {
+    transform: scale(0.95);       
 }
 
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
 .topo-atividade {
     width: 100%;
-    max-width: 400px;
+    max-width: 340px;
     background-color: #F8D3B0; 
     padding: 14px;
     border-radius: 20px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .topo-atividade h1 {
     margin: 0;
     color: #A06432; 
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 
-.instrucao-inicial {
-    color: #B5792A;
-    font-size: 16px;
-    font-weight: 500;
-    margin-top: 25px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
+/* =========================================================
+   CÍRCULO CENTRAL (ANTI-OVO E CENTRALIZADO)
+   ========================================================= */
 .card-central {
-    width: 320px;         
-    height: 320px;        
+    width: 260px;         
+    height: 260px;        
+    flex-shrink: 0;       /* IMPEDE O NAVEGADOR DE AMASSAR O CÍRCULO */
     background-color: #FFFFF0; 
     border-radius: 50%;   
     padding: 20px;
@@ -71,7 +72,12 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 8px 24px rgba(181, 121, 42, 0.12); 
-    margin-bottom: 30px;
+    
+    /* CENTRALIZA O CÍRCULO NA TELA E DA UM ESPAÇO DO CABEÇALHO */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px; 
+    margin-bottom: 25px;
     box-sizing: border-box;
 }
 
@@ -81,8 +87,20 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 16px;
-    width: 100%;
+    gap: 8px; /* Espaço ajustado para caber todos os textos perfeitamente */
+}
+
+/* =========================================================
+   TEXTOS DENTRO DO CÍRCULO
+   ========================================================= */
+/* A instrução que nós movemos lá para dentro */
+.instrucao-inicial {
+    color: #B5792A;
+    font-size: 18px; 
+    font-weight: 700;
+    text-align: center;
+    margin: 0; /* Zeramos a margem para não estourar o limite do círculo */
+    min-height: 44px; /* Garante que 2 linhas não vão pular ou quebrar o layout */
 }
 
 .status-texto {
@@ -90,38 +108,25 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 1.4;
-    max-width: 85%;
 }
 
 .tempo-restante {
     color: #B5792A;
-    font-size: 32px;
+    font-size: 38px; 
     font-weight: bold;
     display: block;
 }
 
+/* =========================================================
+   BARRA DE PROGRESSO
+   ========================================================= */
 .controle-progresso {
     width: 100%;
-    max-width: 400px;
+    max-width: 340px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 35px;
-}
-
-.legendas-tempo {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
-}
-
-.tempo-fase {
-    color: #B5792A;
-    font-size: 15px;
-}
-
-.tempo-fase strong {
-    font-weight: bold;
+    margin-bottom: 25px;
 }
 
 .barra-progresso-container {
@@ -150,17 +155,21 @@
     transition: left 0.1s linear; 
 }
 
+/* =========================================================
+   RODAPÉ E BOTÃO DE AÇÃO
+   ========================================================= */
 .rodape-acoes {
     width: 100%;
-    max-width: 400px;
+    max-width: 340px;
     margin-top: auto; 
     display: flex;
     justify-content: center;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .botao-parar {
-    width: 60%;
+    width: 100%;
+    max-width: 260px; 
     padding: 14px;
     background-color: #FCD2B2; 
     color: #A06432; 
@@ -177,4 +186,3 @@
     transform: scale(0.97);
     background-color: #F8C297;
 }
-

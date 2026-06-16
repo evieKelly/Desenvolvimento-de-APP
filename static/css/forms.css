@@ -1,183 +1,146 @@
-/* ==========================================================================
-   ESTILIZAÇÃO DA TELA DE FORMULÁRIO UNICEPLAC (ÁNIMO)
-   ========================================================================== */
+/* ==============================================================================
+   FORMS.CSS - Estilos específicos para a tela do Formulário UNICEPLAC
+   ============================================================================== */
 
-/* Container Principal: Mantém a consistência visual com o fundo em degradê do app */
+/* =========================================================
+   CONTAINER PRINCIPAL E ESTRUTURA
+   ========================================================= */
 .app-container {
-    background: linear-gradient(to bottom, #FFFFE4 75%, #DCA7B8 100%);
+    /* RECUPERANDO O DEGRADÊ ORIGINAL (O !important impede que o global.css apague ele) */
+    background: linear-gradient(to bottom, #FFFFE4 75%, #DCA7B8 100%) !important;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; 
-    min-height: 100vh;
-    padding: 20px 24px; 
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Botão Voltar */
-.btn-voltar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 85px;               /* Largura horizontal estilo pílula curta */
-    height: 38px;              /* Altura proporcional da caixinha */
-    background-color: #FCD2B2; /* Tom laranja pastel idêntico ao fundo da imagem */
-    color: white;              /* Cor da seta interna */
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 18px;       /* Bordas totalmente arredondadas */
-    border: 1px solid #4A4A4A; /* Borda escura fina que contorna o botão no print */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    
-    /* Inverte a seta para apontar para a esquerda de forma automática */
-    transform: scaleX(-1); 
-    
-    transition: background-color 0.2s, opacity 0.2s;
-    cursor: pointer;
-}
-
-.btn-voltar:active {
-    transform: scaleX(-1) scale(0.95); /* Mantém invertido e dá o feedback de clique */
-}
-
-
-/* Formulário uniceplac) */
-.topo-formulario {
-    width: 100%;
-    max-width: 400px;
-    background-color: #F8D3B0;
-    padding: 14px;
-    border-radius: 20px;
-    text-align: center;
-    margin-top: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.topo-formulario h1 {
-    margin: 0;
-    color: #A06432; /* Marrom suave da identidade do app */
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-/*    2. LOGOTIPO DA UNICEPLAC 
-.logo-uniceplac-container {
-    margin-top: 25px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;   
-}   */
-
-.logo-uniceplac-img {
-    max-width: 180px;
-    height: auto;
-    object-fit: contain;
-    /* Inserido o caminho para a sua imagem local na Área de Trabalho */
-
-}
-
-/* 3. CAIXA EXPLICATIVA DO TEXTO */
-.caixa-explicativa {
-    width: 100%;
-    max-width: 400px;
-    background-color: #FFFFF0; /* Fundo off-white suave para não cansar as vistas */
-    border-radius: 25px;
-    padding: 25px 22px;
-    box-shadow: 0 6px 20px rgba(181, 121, 42, 0.08);
-    margin-bottom: 25px;
-    box-sizing: border-box;
-}
-
-/* BOTÃO DO FORMULARIO */
-.acoes-formulario {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.btn-preencher {
-    width: 100%;
-    padding: 14px;
-    background-color: #F3AF76; /* Laranja do botão de cadastro */
-    color: white;
-    text-align: center;
-    text-decoration: none; 
-    border-radius: 25px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(243, 175, 118, 0.2);
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-/* 5. RODAPÉ E BOTÃO VOLTAR (Idêntico ao seu print) */
-.formulario-footer {
-    width: 100%;
-    max-width: 400px;
-    margin-top: auto; /* Empurra o botão de voltar fixo para a base da página */
-    display: flex;
-    justify-content: flex-start; /* Alinha o botão na esquerda como no print */
-    padding-bottom: 15px;
-}
-
-.indicador-progresso {
-    width: 22px;
-    height: 22px;
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 0%; /* Alterado de 50% para 0% para iniciar do começo da barra */
-    transform: translate(-50%, -50%);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: left 0.3s ease; 
-}
-
-/* Remove o visual do botão antigo */
-.btn-voltar-imagem {
-    border: none !important;      
-    background: none !important;  
-    padding: 0 !important;        
-    display: inline-block;
-    cursor: pointer;
-    text-decoration: none;        
-    transition: transform 0.2s;   
-}
-
-/* Controla o tamanho da sua imagem */
-.btn-voltar-imagem img {
-    width: 60px;                  /* Aqui você define o tamanho da imagem */
-    height: auto;                 
-    display: block;               
-}
-
-/* Efeito de clique */
-.btn-voltar-imagem:active {
-    transform: scale(0.95);       
+    padding: 15px 20px; 
 }
 
 /* =========================================================
-   ESTILO DAS DUAS LOGOS (FORMULÁRIO)
+   CABEÇALHO E TÍTULO
+   ========================================================= */
+.topo-formulario {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px; 
+}
+
+.topo-formulario h1 {
+    font-size: 20px; 
+    font-weight: 700;
+    color: #A06432; 
+    text-align: center;
+    margin: 0;
+}
+
+/* =========================================================
+   ESTILO DAS DUAS LOGOS
    ========================================================= */
 .container-logos {
     display: flex;
-    justify-content: center; /* Centraliza as duas imagens */
+    justify-content: center;
     align-items: center;
-    gap: 25px;               /* Espaço bacana entre uma imagem e outra */
-    margin-top: 20px;        /* Espaço separando do título acima */
-    margin-bottom: 20px;     /* Espaço separando do texto abaixo */
+    gap: 15px; 
+    margin-top: 5px; 
+    margin-bottom: 15px;
     width: 100%;
-    max-width: 400px;
+    max-width: 320px; 
 }
 
 .logo-formulario {
-    max-width: 120px;        /* Trava o tamanho máximo para não ficarem gigantes */
-    height: auto;
-    object-fit: contain;     /* Impede que as imagens fiquem esticadas */
-    border-radius: 8px;      /* Deixa as bordinhas levemente arredondadas */
+    max-width: 95px; 
+    height: auto; 
+    object-fit: contain; 
+    border-radius: 8px; 
+}
+
+/* =========================================================
+   CAIXA EXPLICATIVA (COM SCROLL MAIOR)
+   ========================================================= */
+.caixa-explicativa {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px; 
+    margin-bottom: 20px; 
+    width: 100%;
+    max-width: 340px; 
+    padding: 15px 18px;
+    
+    background-color: rgba(255, 255, 255, 0.85); 
+    border-radius: 12px;
+    border: 1px solid #E0E0E0; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
+
+    /* Altura aumentada para mostrar mais texto, mas mantendo a rolagem! */
+    max-height: 260px; 
+    overflow-y: auto;  
+}
+
+/* Barra de rolagem estilizada */
+.caixa-explicativa::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.caixa-explicativa::-webkit-scrollbar-track {
+    background: transparent; 
+    margin: 8px 0; 
+}
+
+.caixa-explicativa::-webkit-scrollbar-thumb {
+    background-color: #F3AF76; 
+    border-radius: 10px; 
+}
+
+/* =========================================================
+   TEXTOS DENTRO DA CAIXA
+   ========================================================= */
+.caixa-explicativa p {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333333;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 12px; 
+}
+
+.caixa-explicativa p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   SEÇÃO DE AÇÕES (BOTÃO FINAL)
+   ========================================================= */
+.acoes-formulario {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: auto; /* Garante que o botão fique na base certinho */
+    margin-bottom: 10px;
+}
+
+.btn-preencher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 340px; 
+    height: 50px; 
+    
+    background-color: #F3AF76; 
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 10px;
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-preencher:hover {
+    background-color: #e8a063; 
+}
+
+.btn-preencher:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
