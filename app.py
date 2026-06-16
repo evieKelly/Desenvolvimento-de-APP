@@ -80,14 +80,28 @@ def cadastro():
 def recuperar_senha():
     if request.method == 'POST':
         email = request.form.get('email')
-        
-       
-        usuario = Usuario.query.filter_by(email=email).first()
-        
-      
-        return render_template('recuperar_senha.html', enviado=True)
+        nova_senha = request.form.get('nova_senha')
+        confirme_senha = request.form.get('confirme_senha')
 
-    return render_template('recuperar_senha.html', enviado=False)
+        # 1. Verifica se as senhas digitadas são iguais
+        if nova_senha != confirme_senha:
+            flash('As senhas não coincidem!', 'erro')
+            return redirect(url_for('recuperar_senha'))
+
+        # 2. Busca o usuário no banco
+        usuario = Usuario.query.filter_by(email=email).first()
+
+        # 3. Se o usuário existir, atualiza a senha e salva
+        if usuario:
+            usuario.senha = nova_senha
+            db.session.commit()
+            flash('Senha redefinida com sucesso! Faça login com a nova senha.', 'sucesso')
+            return redirect(url_for('index'))
+        else:
+            flash('E-mail não encontrado em nosso sistema.', 'erro')
+            return redirect(url_for('recuperar_senha'))
+
+    return render_template('recuperar_senha.html')
 
 # RESPONSÁVEL: Luiz
 # aqui eu calculo o humor médio com as notas de 1 a 5 e já devolvo pronto pra

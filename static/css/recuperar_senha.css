@@ -1,4 +1,3 @@
-
 /* static/css/recuperar_senha.css */
 
 .app-container {
@@ -17,42 +16,67 @@
     margin-top: 10px; 
 }
 
-/* O Card centralizado com cantos arredondados do protótipo */
 .card-aviso {
     width: 100%;
-    background-color: #FFDCC3; /* Tom pastel de pêssego/laranja bem suave para o fundo */
+    background-color: #FFDCC3; 
     border-radius: 20px;
     padding: 30px 20px;
-    margin-top: 50px; /* Joga o card um pouco mais para o centro da tela */
+    margin-top: 50px; 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .texto-principal {
-    color: #BD5D16; /* Marrom avermelhado escuro do seu texto */
+    color: #BD5D16; 
     font-size: 18px;
     font-weight: bold;
     text-align: center;
     line-height: 1.4;
+    margin: 0;
 }
 
-/* Grupo de botões dentro do card */
-.botoes-grupo {
+
+.form-recuperar {
     display: flex;
     flex-direction: column;
     gap: 12px;
     width: 100%;
 }
 
-/* Estilo base para ambos os botões */
+.form-recuperar input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #FFFFE4;
+    border: none;
+    border-radius: 15px; 
+    font-size: 15px;
+    color: #B5792A;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-recuperar input::placeholder {
+    color: #B5792A;
+    opacity: 0.7;
+}
+
+
+.botoes-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 10px;
+}
+
 .btn-action {
     width: 100%;
     padding: 14px;
     border: none;
-    border-radius: 20px; /* Bordas arredondadas combinando com o card */
+    border-radius: 20px; 
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -66,14 +90,35 @@
     transform: scale(0.98);
 }
 
-/* Botão Reenviar (Laranja claro) */
 .btn-reenviar {
     background-color: #F3AF76;
     color: white;
 }
 
-/* Botão Voltar (Marrom escuro) */
 .btn-voltar-login {
     background-color: #B26E30;
     color: white;
+}
+
+
+.alerta {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+.alerta-erro {
+    background-color: #ffcccc;
+    color: #cc0000;
+    border: 1px solid #cc0000;
+}
+
+.alerta-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
 }

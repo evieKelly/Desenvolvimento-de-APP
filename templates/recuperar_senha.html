@@ -17,17 +17,31 @@
         </div>
 
         <div class="card-aviso">
-            <p class="texto-principal">
-                Enviamos um link de redefinição de senha para o email cadastrado
-            </p>
+            <p class="texto-principal">Redefinir Senha</p>
             
-            <div class="botoes-grupo">
-                <button type="button" class="btn-action btn-reenviar">reenviar link</button>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alerta alerta-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form class="form-recuperar" method="POST" action="/recuperar-senha">
+                <input type="email" name="email" required placeholder="Seu email cadastrado">
+                <input type="password" name="nova_senha" required placeholder="Nova senha">
+                <input type="password" name="confirme_senha" required placeholder="Confirme a nova senha">
                 
-                <a href="{{ url_for('index') }}" class="btn-action btn-voltar-login">
-                    voltar para tela de login
-                </a>
-            </div>
+                <div class="botoes-grupo">
+                    <button type="submit" class="btn-action btn-reenviar">Atualizar Senha</button>
+                    
+                    <a href="{{ url_for('index') }}" class="btn-action btn-voltar-login">
+                        Voltar para o login
+                    </a>
+                </div>
+            </form>
         </div>
 
     </div>
