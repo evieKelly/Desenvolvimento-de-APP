@@ -18,6 +18,16 @@
 
         <h3 class="boas-vindas">Bem vindo (a)</h3>
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alerta alerta-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
         <form class="login-form" method="POST" action="/">
             <div class="input-grupo">
                 <input type="email" name="email" required placeholder="Email">
