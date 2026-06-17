@@ -158,10 +158,14 @@ def nota_do_registro(registro):
 # TELA: Tela Inicial
 @app.route('/tela-inicial')
 def tela_inicial():
-    # pego os registros de humor que o Quiz salva no banco e tiro a média.
+    # sem login não dá pra saber de quem é a tela, então mando pro login
+    if 'usuario_id' not in session:
+        return redirect(url_for('index'))
+
+    # pego só os registros de humor DESTE usuário e tiro a média.
     # enquanto o Quiz ainda não salva nada vem vazio e aparece "Sem registros"
     # no card, achei melhor do que deixar um humor de mentira aparecendo.
-    registros = RegistroHumor.query.all()
+    registros = RegistroHumor.query.filter_by(usuario_id=session['usuario_id']).all()
     notas_humor = [nota_do_registro(r) for r in registros]
 
     humor = calcular_humor_medio(notas_humor)
@@ -295,9 +299,14 @@ def forms():
 # RegistroHumor. depois mando ele pra Tela Inicial, que já recalcula a média.
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
+    # precisa estar logado pra saber de quem é o humor que vai salvar
+    if 'usuario_id' not in session:
+        return redirect(url_for('index'))
+
     if request.method == 'POST':
         humor = request.form['humor']
-        registro = RegistroHumor(humor=humor)
+        # marco o humor com o id de quem está logado
+        registro = RegistroHumor(humor=humor, usuario_id=session['usuario_id'])
         db.session.add(registro)
         db.session.commit()
         return redirect(url_for('tela_inicial'))
@@ -312,6 +321,10 @@ def quiz():
 # 1 e 2 viram Triste, 3 Neutro, 4 Calmo e 5 Feliz. devolvo a % de cada uma.
 @app.route('/relatorio-semanal')
 def relatorio_semanal():
+    # Luiz: precisa de login pra mostrar só o humor deste usuário
+    if 'usuario_id' not in session:
+        return redirect(url_for('index'))
+
     humores = {
         "Feliz": 0,
         "Calmo": 0,
@@ -321,9 +334,12 @@ def relatorio_semanal():
 
     rotulo_por_nota = {1: "Triste", 2: "Triste", 3: "Neutro", 4: "Calmo", 5: "Feliz"}
 
-    # só os registros dos últimos 7 dias
+    # só os registros deste usuário nos últimos 7 dias
     limite = date.today() - timedelta(days=7)
-    registros = RegistroHumor.query.filter(RegistroHumor.data >= limite).all()
+    registros = RegistroHumor.query.filter(
+        RegistroHumor.usuario_id == session['usuario_id'],
+        RegistroHumor.data >= limite
+    ).all()
     for r in registros:
         humores[rotulo_por_nota[nota_do_registro(r)]] += 1
 
@@ -343,6 +359,10 @@ def relatorio_semanal():
 # nota 1-5 (mesmo critério da Tela Inicial) e devolvo a % de cada humor.
 @app.route('/relatorio-mensal')
 def relatorio_mensal():
+    # Luiz: precisa de login pra mostrar só o humor deste usuário
+    if 'usuario_id' not in session:
+        return redirect(url_for('index'))
+
     humores = {
         "Muito Feliz": 0,
         "Bem": 0,
@@ -353,9 +373,12 @@ def relatorio_mensal():
 
     rotulo_por_nota = {1: "Muito Triste", 2: "Triste", 3: "Neutro", 4: "Bem", 5: "Muito Feliz"}
 
-    # só os registros dos últimos 30 dias
+    # só os registros deste usuário nos últimos 30 dias
     limite = date.today() - timedelta(days=30)
-    registros = RegistroHumor.query.filter(RegistroHumor.data >= limite).all()
+    registros = RegistroHumor.query.filter(
+        RegistroHumor.usuario_id == session['usuario_id'],
+        RegistroHumor.data >= limite
+    ).all()
     for r in registros:
         humores[rotulo_por_nota[nota_do_registro(r)]] += 1
 

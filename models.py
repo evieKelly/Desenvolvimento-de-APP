@@ -17,6 +17,9 @@ class RegistroHumor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     humor = db.Column(db.String(50), nullable=False)
     data = db.Column(db.Date, nullable=False, default=date.today)
+    # de quem é o humor (igual ao diário da Amanda), pra cada usuário
+    # ver só o humor dele e não o de todo mundo junto.
+    usuario_id = db.Column(db.Integer, nullable=False)
 
 # tabela diário (Amanda)
 class Diario(db.Model):
