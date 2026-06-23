@@ -22,7 +22,7 @@ def index():
         email_digitado = request.form.get('email')
         senha_digitada = request.form.get('senha')
         
-        # Busca o usuário no banco de dados
+       
         usuario = Usuario.query.filter_by(email=email_digitado).first()
         
         # Verifica se o usuário existe e se a senha bate
@@ -35,7 +35,7 @@ def index():
 
             return redirect(url_for('tela_inicial'))
         else:
-            # Se errar, devolve uma mensagem de alerta na tela
+            # Se errar
             flash('E-mail ou senha incorretos!', 'erro')
             
     return render_template('index.html')
@@ -49,10 +49,10 @@ def cadastro():
         email = request.form.get('email')
         idade = request.form.get('idade')
         senha = request.form.get('senha')
-        # Captura o campo de confirmação do seu formulário
+       
         confirme_senha = request.form.get('confirme_senha') 
         
-        # Validação simples: as senhas precisam ser iguais
+        # Validação
         if senha != confirme_senha:
             flash('As senhas não coincidem!', 'erro')
             return render_template('cadastro.html')
@@ -68,7 +68,7 @@ def cadastro():
         db.session.add(novo_usuario)
         db.session.commit()
         
-        # Cadastro feito! Redireciona para o login para ele logar
+        
         flash('Cadastro realizado com sucesso! Faça seu login.', 'sucesso')
         return redirect(url_for('index'))
 
